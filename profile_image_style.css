@@ -1,0 +1,28 @@
+.upload {
+  width: 125px;
+  margin: auto;
+}
+
+.upload img {
+  border-radius: 50%;
+  border: 8px solid #dcdcdc;
+}
+
+.upload .round {
+  background: #00b4ff;
+  width: 32px;
+  height: 32px;
+  line-height: 33px;
+  text-align: center;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.upload .round input[type="file"] {
+  transform: scale(2);
+  opacity: 0;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  cursor: pointer;
+}

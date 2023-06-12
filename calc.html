@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function multiplyBy() {
+        oper = document.getElementById("operator").value;
+
+        num1 = document.getElementById("firstNumber").value;
+        if (oper === "reguler") {
+          document.getElementById("result").innerHTML = num1 * 5000;
+        }
+        if (oper === "kilat") {
+          document.getElementById("result").innerHTML = num1 * 8000;
+        }
+        if (oper === "express") {
+          document.getElementById("result").innerHTML = num1 * 10000;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <form name="hasil">
+      <label for="inputState">Pilihan Paket</label><br />
+      <select
+        onselect="multiplyBy();randomString();"
+        name="paket"
+        style="background-color: white"
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        id="operator"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        Pilihan Paket
+        <option selected disabled value="pilih paket">pilih paket</option>
+        <option value="reguler">Reguler</option>
+        <option value="kilat">Kilat</option>
+        <option value="express">Express</option>
+      </select>
+      kg <input type="text" id="firstNumber" /><br />
+    </form>
+    <p>
+      <label id="result"></label>
+    </p>
+
+    <form name="randomform">
+    <p id="randomfield" style="color: green"></p></b>
+    </form>
+    <script>
+      function randomString() {
+        //define a variable consisting alphabets in small and capital letter
+        var characters = "ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+
+        //specify the length for the new string
+        var lenString = 7;
+        var randomstring = "";
+
+        //loop to select a new character in each iteration
+        for (var i = 0; i < lenString; i++) {
+          var rnum = Math.floor(Math.random() * characters.length);
+          randomstring += characters.substring(rnum, rnum + 1);
+        }
+
+        //display the generated string
+        document.getElementById("randomfield").innerHTML = randomstring;
+      }
+    </script>
+    <p>Current Date and Time is <span id='date-time'></span>.</p>
+    <script>
+        var dt = new Date();
+        document.getElementById('date-time').innerHTML=dt;
+        </script>
+  </body>
+</html>
