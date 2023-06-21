@@ -23,10 +23,18 @@
                     header("location: adminn/dashboard.php");
                 }
             } else {
-                echo "<script>alert('Password tidak sesuai');</script>";
+                echo "<script>alert('Password tidak sesuai');
+                window.location = 'index.php';
+                </script>";
+                exit();
             }
         } else {
-            echo "<script>alert('Email tidak ditemukan');</script>";
+            echo "<script>alert('Email tidak ditemukan');
+            window.location = 'index.php';
+            </script>";
+            exit();
+            
+
         }
     } else {
         echo "<script>alert('Harap isi form');</script>";
