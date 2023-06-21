@@ -5,15 +5,22 @@
     $_SESSION['login'] = false;
   }else{
     $id = $_SESSION['id'];
-    $query = " select * from data_user where id= '$id' ";
+    $query = " select * from users where user_id= '$id' ";
     $result = mysqli_query($koneksi, $query);
     $user = mysqli_fetch_assoc($result);
 
-    $jumlah = mysqli_query($koneksi, "SELECT Count(price) AS value_sum FROM order_user where id_user = '$id'"); 
+    $customer_query = "SELECT * FROM customers WHERE user_id = $id";
+    $customer_result = mysqli_query($koneksi, $customer_query);
+    $customer = mysqli_fetch_assoc($result);
+
+    $customer_id = $customer["customer_id"];
+    $subscription_type = $customer["subscription_type"];
+
+    $jumlah = mysqli_query($koneksi, "SELECT Count(total_cost) AS value_sum FROM laundry_orders where customer_id = '$customer_id'"); 
     $row = mysqli_fetch_assoc($jumlah); 
     $sum = $row['value_sum'];
 
-    $name = $user["firstName"];
+    $name = $user["name"];
     $image = $user["image"];
   }
 ?>
@@ -216,11 +223,11 @@
     ?> <!-- TEKAN KENEE -->
                         </div>
                         <div class="name mt-1">
-                            <h3 class=""><?php echo $user['firstName'], " ", $user['lastName']; ?></h3>
-                            <h5><?php if($user['status'] == null){
+                            <h3 class=""><?php echo $user['name']; ?></h3>
+                            <h5><?php if($subscription_type == null){
                                   echo "free pass";
                             }else{
-                                  echo $user['status'];
+                                  echo $subscription_type;
                             }
                          ?></h5>
               
@@ -267,11 +274,11 @@
                 <div class="col-6 col-md-3 wow fadeIn" data-wow-delay="0.1s">
                     <div class="bg-white text-center p-3">
                         <h1 class="mb-0"><?php 
-                        if($user['status'] == 'Gold Pass'){
+                        if($subscription_type == 'Gold Pass'){
                           echo "1 Tahun";
-                        }elseif ($user['status'] == 'Reguler Pass'){
+                        }elseif ($subscription_type == 'Reguler Pass'){
                           echo "7 Hari";
-                        }elseif ($user['status'] == 'Royale Pass'){
+                        }elseif ($subscription_type == 'Royale Pass'){
                           echo "1 Bulan";
                         }else{
                           echo "-";

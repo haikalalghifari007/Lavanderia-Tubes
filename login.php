@@ -116,22 +116,13 @@
 
                     <form action="register.php" method="post">
     
-                    <div class="row">
-                      <div class="col-md-6 mb-4">
-                        <div class="form-outline">
-                          <label class="form-label" for="form3Example1m">First name</label>
-                          <input type="text" id="form3Example1m" class="form-control form-control-lg" name="firstName" required />
+
+                        <div class="form-outline mb-4">
+                          <label class="form-label" for="form3Example8">Name</label>
+                          <input type="text" id="form3Example1m" class="form-control form-control-lg" name="name" required />
 
                         </div>
-                      </div>
-                      <div class="col-md-6 mb-4">
-                        <div class="form-outline">
-                          <label class="form-label" for="form3Example1n">Last name</label>
-                          <input type="text" id="form3Example1n" class="form-control form-control-lg" name="lastName" required/>
 
-                        </div>
-                      </div>
-                    </div>
     
                     
                     <div class="form-outline mb-4">
@@ -140,187 +131,13 @@
 
                     </div>
     
-                    <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+                    
     
-                      <h6 class="mb-0 me-4">Gender: </h6>
-
-                      
-                        <div class="form-check form-check-inline mb-0 me-4">
-                          <input class="form-check-input" type="radio" name="gender" id="femaleGender" required
-                            value="Female" />
-                          <label class="form-check-label" for="femaleGender">Female</label>
-                        </div>
-      
-                        <div class="form-check form-check-inline mb-0 me-4">
-                          <input class="form-check-input" type="radio" name="gender" id="maleGender"
-                            value="Male" />
-                          <label class="form-check-label" for="maleGender">Male</label>
-                        </div>
-                      
-                      
-    
-                    </div>
-    
-                    <div class="row">
-                      <div class="col-md-6 mb-4">
-                        <label class="form-label" for="form3Example8" >Province</label><br>
-                        <select class="btn btn-secondary dropdown-toggle " style="background-color:white ; width: 200px;" name="province">
-                        <option value="Nanggroe Aceh Darussalam">Nanggroe Aceh Darussalam</option>
-                          <option value="Sumatera Utara">Sumatera Utara</option>
-                          <option value="Sumatera Selatan">Sumatera Selatan</option>
-                          <option value="Sumatera Barat">Sumatera Barat</option>
-                          <option value="Bengkulu">Bengkulu</option>
-                          <option value="Riau">Riau</option>
-                          <option value="Kepulauan Riau">Kepulauan Riau</option>
-                          <option value="Jambi">Jambi</option>
-                          <option value="Lampung">Lampung</option>
-                          <option value="JBangka Belitung">Bangka Belitung</option>
-                          <option value="Kalimantan Barat">Kalimantan Barat</option>
-                          <option value="Kalimantan Timur">Kalimantan Timur </option>
-                          <option value="Kalimantan Selatan">Kalimantan Selatan</option>
-                          <option value="Kalimantan Tengah">Kalimantan Tengah</option>
-                          <option value="Kalimantan Utara">Kalimantan Utara</option>
-                          <option value="Banten">Banten</option>
-                          <option value="DKI Jakarta">DKI Jakarta</option>
-                          <option value="Jawa Barat">Jawa Barat</option>
-                          <option value="Jawa Tengah">Jawa Tengah</option>
-                          <option value="Daerah Istimewa Yogyakarta">Daerah Istimewa Yogyakarta</option>
-                          <option value="Jawa Timur">Jawa Timur</option>
-                          <option value="Bali">Bali </option>
-                          <option value="Nusa Tenggara Timur">Nusa Tenggara Timur</option>
-                          <option value="Nusa Tenggara Barat">Nusa Tenggara Barat</option>
-                          <option value="Gorontalo">Gorontalo</option>
-                          <option value="Sulawesi Barat">Sulawesi Barat</option>
-                          <option value="Sulawesi Tengah">Sulawesi Tengah</option>
-                          <option value="Sulawesi Utara">Sulawesi Utara</option>
-                          <option value="Sulawesi Tenggara">Sulawesi Tenggara</option>
-                          <option value="Sulawesi Selatan">Sulawesi Selatan</option>
-                          <option value="Maluku Utara">Maluku Utara</option>
-                          <option value="Maluku">Maluku</option>
-                          <option value="Papua Barat">Papua Barat</option>
-                          <option value="Papua">Papua</option>
-                          <option value="Papua Tengah">Papua Tengah</option>
-                          <option value="Papua Pegunungan">Papua Pegunungan</option>
-                          <option value="Papua Selatan">Papua Selatan</option>
-                          <option value="Papua Barat Daya">Papua Barat Daya</option>
-                        </select>
-    
-                      </div>
-                      <div class="col-md-6 mb-4">
-                        <label class="form-label" for="form3Example8" >City</label><br>
-                        <select class="btn btn-secondary dropdown-toggle " style="background-color:white ; width: 200px;" name="city">
-                        <option value="Magelang">Magelang</option>
-                          <option value="Semarang">Semarang</option>
-                          <option value="Pacitan">Pacitan</option>
-                          <option value="Kudus">Kudus</option>
-                          <option value="Banda Aceh">Banda Aceh</option>
-                          <option value="Langsa">Langsa</option>
-                          <option value="Lhokseumawe">Lhokseumawe</option>
-                          <option value="Sabang">Sabang</option>
-                          <option value="Subulussalam">Subulussalam</option>
-                          <option value="Denpasar">Denpasar</option>
-                          <option value="Pangkalpinang">Pangkalpinang</option>
-                          <option value="Cilegon">Cilegon</option>
-                          <option value="Serang">Serang</option>
-                          <option value="Tangerang Selatan">Tangerang Selatan</option>
-                          <option value="Tangerang">Tangerang</option>
-                          <option value="Bengkulu">Bengkulu</option>
-                          <option value="Yogyakarta">Yogyakarta</option>
-                          <option value="Gorontalo">Gorontalo</option>
-                          <option value="Kota Administrasi Jakarta Barat">Kota Administrasi Jakarta Barat</option>
-                          <option value="Kota Administrasi Jakarta Pusat">Kota Administrasi Jakarta Pusat</option>
-                          <option value="Kota Administrasi Jakarta Selatan">Kota Administrasi Jakarta Selatan</option>
-                          <option value="Kota Administrasi Jakarta Timur">Kota Administrasi Jakarta Timur</option>
-                          <option value="Kota Administrasi Jakarta Utara">Kota Administrasi Jakarta Utara</option>
-                          <option value="Sungai Penuh">Sungai Penuh</option>
-                          <option value="Jambi">Jambi</option>
-                          <option value="Bandung">Bandung</option>
-                          <option value="Bekasi">	Bekasi</option>
-                          <option value="Bogor">	Bogor</option>
-                          <option value="Cimahi">Cimahi</option>
-                          <option value="Cirebon">Cirebon</option>
-                          <option value="Depok">Depok</option>
-                          <option value="Sukabumi">Sukabumi</option>
-                          <option value="Tasikmalaya">Tasikmalaya</option>
-                          <option value="Banjar">Banjar</option>
-                          <option value="Pekalongan">Pekalongan</option>
-                          <option value="Salatiga">Salatiga</option>
-                          <option value="Semarang">Semarang</option>
-                          <option value="Surakarta">Surakarta</option>
-                          <option value="Tegal">Tegal</option>
-                          <option value="Batu">Batu</option>
-                          <option value="Blitar">Blitar</option>
-                          <option value="Kediri">Kediri</option>
-                          <option value="Madiun">Madiun</option>
-                          <option value="Malang">Malang</option>
-                          <option value="Mojokerto">Mojokerto</option>
-                          <option value="Pasuruan">	Pasuruan</option>
-                          <option value="Probolinggo">	Probolinggo</option>
-                          <option value="Surabaya">Surabaya</option>
-                          <option value="Pontianak">	Pontianak</option>
-                          <option value="Singkawang">Singkawang</option>
-                          <option value="Banjarbaru">Banjarbaru</option>
-                          <option value="Banjarmasin">Banjarmasin</option>
-                          <option value="Palangka">Palangka Raya</option>
-                          <option value="Balikpapan">Balikpapan</option>
-                          <option value="Bontang">Bontang</option>
-                          <option value="Samarinda">Samarinda</option>
-                          <option value="Nusantara">Nusantara</option>
-                          <option value="Tarakan">Tarakan</option>
-                          <option value="Batam">Batam</option>
-                          <option value="Tanjungpinang">Tanjungpinang</option>
-                          <option value="Bandar Lampung">Bandar Lampung</option>
-                          <option value="Metro">Metro</option>
-                          <option value="Ternate">Ternate</option>
-                          <option value="Tidore Kepulauan">Tidore Kepulauan</option>
-                          <option value="Ambon">Ambon</option>
-                          <option value="Tual">	Tual</option>
-                          <option value="Bima">	Bima</option>
-                          <option value="Mataram">Mataram</option>
-                          <option value="Kupang">Kupang</option>
-                          <option value="Sorong">Sorong</option>
-                          <option value="Jayapura">Jayapura</option>
-                          <option value="Dumai">Dumai</option>
-                          <option value="Pekanbaru">Pekanbaru</option>
-                          <option value="Makassar">Makassar</option>
-                          <option value="Palopo">Palopo</option>
-                          <option value="Parepare">Parepare</option>
-                          <option value="Palu">Palu</option>
-                          <option value="Baubau">Baubau</option>
-                          <option value="Kendari">Kendari</option>
-                          <option value="Bitung">Bitung</option>
-                          <option value="Kotamobagu">	Kotamobagu</option>
-                          <option value="Manado">Manado</option>
-                          <option value="Tomohon">	Tomohon</option>
-                          <option value="Bukittinggi">Bukittinggi</option>
-                          <option value="Padang">Padang</option>
-                          <option value="Padang Panjang">	Padang Panjang</option>
-                          <option value="Padang">Pariaman</option>
-                          <option value="Payakumbuh">Payakumbuh</option>
-                          <option value="Sawahlunto">Sawahlunto</option>
-                          <option value="Solok">	Solok</option>
-                          <option value="Lubuklinggau">Lubuklinggau</option>
-                          <option value="Pagar Alam">Pagar Alam</option>
-                          <option value="Palembang">Palembang</option>
-                          <option value="Prabumulih">Prabumulih</option>
-                          <option value="Binjai">	Binjai</option>
-                          <option value="Gunungsitoli">Gunungsitoli</option>
-                          <option value="Medan">Medan</option>
-                          <option value="Padangsidimpuan">Padangsidimpuan</option>
-                          <option value="Pematangsiantar">Pematangsiantar</option>
-                          <option value="Sibolga">Sibolga</option>
-                          <option value="Tebing Tinggi">Tebing Tinggi</option>
-                          <option value="Tanjungbalai">	Tanjungbalai</option>
-                        </select>
-    
-              
-    
-                      </div>
-                    </div>
+                    
     
                     <div class="form-outline mb-4">
                       <label class="form-label" for="form3Example9">Phone number</label>
-                      <input type="text" id="form3Example9" class="form-control form-control-lg" name="phone" required/>
+                      <input type="text" id="form3Example9" class="form-control form-control-lg" name="phn_num" required/>
  
                     </div>
     
@@ -334,10 +151,7 @@
                       <input type="password" id="form3Example99" class="form-control form-control-lg" name="password" required/>
                     </div>
     
-                    <div class="form-outline mb-4">
-                      <label class="form-label" for="form3Example97">Repeat Password</label>
-                      <input type="password" id="form3Example97" class="form-control form-control-lg" name="repassword" required/>
-                    </div>
+                   
     
                     <div class="d-flex justify-content-end pt-3">
                       <button  class="btn btn-outline-success" style="color:white;width: 90px; background-color:rgb(0, 213, 255) ; border-color: rgb(0, 213, 255);">Sign Up</button>
