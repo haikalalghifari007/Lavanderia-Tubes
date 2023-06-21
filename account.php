@@ -325,18 +325,12 @@
                     <div class="row">
                       <div class="col-md-6 mb-4">
                         <div class="form-outline">
-                          <label class="form-label" for="form3Example1m">First name</label>
-                          <input type="text" id="form3Example1m" class="form-control form-control-lg" value="<?php echo $user['firstName'] ?>" name="firstName"/>
+                          <label class="form-label" for="form3Example1m">Name</label>
+                          <input type="text" id="form3Example1m" class="form-control form-control-lg" value="<?php echo $user['name'] ?>" name="nama"/>
 
                         </div>
                       </div>
-                      <div class="col-md-6 mb-4">
-                        <div class="form-outline">
-                          <label class="form-label" for="form3Example1n">Last name</label>
-                          <input type="text" id="form3Example1n" class="form-control form-control-lg" value="<?php echo $user['lastName'] ?>" name="lastName" />
-
-                        </div>
-                      </div>
+                      
                     </div>
     
                     
@@ -519,7 +513,7 @@
                     </div>
                     <div class="form-outline mb-4">
                       <label class="form-label" for="form3Example9">Phone number</label>
-                      <input type="text" id="form3Example9" class="form-control form-control-lg" value="<?php echo $user['phone'] ?>" name="phone" />
+                      <input type="text" id="form3Example9" class="form-control form-control-lg" value="<?php echo $user['phn_num'] ?>" name="phone" />
                     </div>
                     <div class="form-outline mb-4">
                       <label class="form-label" for="form3Example90">Address</label>

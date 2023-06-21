@@ -12,9 +12,13 @@
     if ($koneksi->query($sql) === TRUE) {
     $user_id = $koneksi->insert_id;
 
+    //Cek hari tanggal masuk
+   
+    $membershipStartDate = date('Y-m-d'); // hari ini
+
     // Memasukkan data pengguna ke dalam tabel 'customers'
-    $sql = "INSERT INTO customers (user_id)
-            VALUES ('$user_id')";
+    $sql = "INSERT INTO customers (user_id, subscription_type, subscription_start_date)
+            VALUES ('$user_id', 'reguler', '$membershipStartDate')";
     if ($koneksi->query($sql) === TRUE) {
         echo "<script>alert('Berhasil registrasi, menuju halaman utama');  window.location = 'index.php'; </script>";
     } else {
