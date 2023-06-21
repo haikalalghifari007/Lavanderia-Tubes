@@ -5,9 +5,15 @@
     $_SESSION['login'] = false;
   }else{
     $id = $_SESSION['id'];
-    $query = " select * from data_user where id= '$id' ";
+    $query = " select * from users where user_id= '$id' ";
     $result = mysqli_query($koneksi, $query);
     $user = mysqli_fetch_assoc($result);
+    
+    $customer_query = "SELECT * FROM customers WHERE user_id = $id";
+    $customer_result = mysqli_query($koneksi, $customer_query);
+    $customer = mysqli_fetch_assoc($result);
+
+    $subscription_type = $customer["subscription_type"];
   }
 ?>
 
@@ -133,16 +139,16 @@
                   <div class="form-group col-md-6">
                     <label for="inputEmail4">Email</label>
                     <input type="email" class="form-control" id="inputEmail4" placeholder="Email" value="<?php echo $user['email'] ?>" name="email"/>
-                    <input type="hidden" class="form-control" id="inputEmail4" placeholder="Email" value="<?php echo $user['id'] ?>" name="id_user"/>
+                    <input type="hidden" class="form-control" id="inputEmail4" placeholder="Email" value="<?php echo $user['user_id'] ?>" name="id_user"/>
                   </div>
                   <div class="form-group col-md-6">
                     <label for="inputEmail4">Name</label>
-                    <input type="text" class="form-control" id="inputPassword4" placeholder="Username" value="<?php echo $user['firstName'], " ", $user['lastName'] ?>" name="name"/> 
+                    <input type="text" class="form-control" id="inputPassword4" placeholder="Username" value="<?php echo $user['name'] ?>" name="name"/> 
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputAddress">No Telepon</label>
-                  <input type="text" class="form-control" id="inputAddress" placeholder="081122321" value="<?php echo $user['phone'] ?>" name="phone"/>
+                  <input type="text" class="form-control" id="inputAddress" placeholder="081122321" value="<?php echo $user['phn_num'] ?>" name="phone"/>
                 </div>
                 
   <div class="form-group">
@@ -179,7 +185,7 @@
         } 
       }
     </script>
-    <?php if(!$user['status'] == null){
+    <?php if(!$subscription_type == null){
       echo "<script>
           function multiplyBy() {
           document.getElementById('result').innerHTML = 0;

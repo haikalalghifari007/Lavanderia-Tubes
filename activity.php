@@ -5,7 +5,7 @@
     $_SESSION['login'] = false;
   }else{
     $id = $_SESSION['id'];
-    $query = " select * from data_user where id= '$id' ";
+    $query = " select * from users where user_id= '$id' ";
     $result = mysqli_query($koneksi, $query);
     $user = mysqli_fetch_assoc($result);
   }
@@ -114,7 +114,7 @@
     <!-- Navbar End -->
     <H1 style="color:gold;">ORDER ACTIVITY</H1>
     <div class="form-group pull-right">
-    <input type="text" class="search form-control" placeholder="What you looking for?">
+    <input type="text" class="search form-control" placeholder="what are you looking for?">
 </div>
 <span class="counter pull-right"></span>
 <table class="table table-hover table-bordered results">
@@ -130,7 +130,7 @@
   </thead>
   <tbody>
   <?php
-                    $sql = "SELECT * from order_user where id_user = '$id'"; 
+                    $sql = "SELECT * from laundry_orders where customer_id = '$id'"; 
                     $hasil = $koneksi->query($sql); //memproses query
     if ($hasil->num_rows > 0) {
        //menampilkan data setiap barisnya
