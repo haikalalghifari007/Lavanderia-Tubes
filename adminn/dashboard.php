@@ -1,13 +1,16 @@
 <?php
 include '../koneksi.php';
 session_start();
-if(! $_SESSION['login']){
-  header("Location:login.php");
+
+  if (! isset($_SESSION['login'])){
+    $_SESSION['login'] = false;
 } else{
                 $id = $_SESSION['id'];
-                $query = " select * from data_user where id= '$id' ";
+                $query = " select * from users where user_id= '$id' ";
                 $result = mysqli_query($koneksi, $query);
                 $user = mysqli_fetch_assoc($result);
+                $name = $user["name"];
+                $name = $user["name"];
 }
 
 ?>
@@ -57,12 +60,12 @@ if(! $_SESSION['login']){
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
-    <div class="preloader">
+    <!-- <div class="preloader">
       <div class="lds-ripple">
         <div class="lds-pos"></div>
         <div class="lds-pos"></div>
       </div>
-    </div>
+    </div> -->
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
@@ -135,19 +138,14 @@ if(! $_SESSION['login']){
               <!-- User profile and search -->
               <!-- ============================================================== -->
               <li>
-              <?php 
-                $user = $_SESSION['user'];
-                $id = $user['id'];
-                $sqledit = "Select * from data_user where id='$id'";
-                $hasiledit = $koneksi->query($sqledit); //memproses query
-              ?>
+              
                 <a class="profile-pic" href="#">
                   <img
                     src="plugins/images/users/varun.jpg"
                     alt="user-img"
                     width="36"
                     class="img-circle"
-                  /><span class="text-white font-medium"><?php echo $user['firstName']; ?></span></a
+                  /><span class="text-white font-medium"><?php echo $name; ?></span></a
                 >
               </li>
               <!-- ============================================================== -->
@@ -327,14 +325,69 @@ if(! $_SESSION['login']){
                     </li>
                   </ul>
                 </div>
-                <div id="ct-visits" style="height: 405px">
-                  <div class="chartist-tooltip" style="top: -17px; left: -12px">
-                    <span class="chartist-tooltip-value">6</span>
-                  </div>
-                </div>
+                <?php
+// Data dummy
+$data = [
+    ['order_date' => '2023-06-01', 'total_cost' => 12000],
+    ['order_date' => '2023-06-02', 'total_cost' => 9050],
+    ['order_date' => '2023-06-03', 'total_cost' => 6500]
+];
+
+// Mengubah format tanggal menjadi string bulan dan tahun
+$labels = [];
+foreach ($data as $item) {
+    $date = date_create($item['order_date']);
+    $labels[] = date_format($date, 'M Y');
+}
+
+// Mengambil total biaya dari setiap data
+$costs = array_column($data, 'total_cost');
+
+// Kode JavaScript untuk menggambar grafik
+$jsCode = <<<EOD
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<canvas id="myChart"></canvas>
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [{{LABELS}}],
+            datasets: [{
+                label: 'Total Cost',
+                data: [{{COSTS}}],
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+EOD;
+
+// Mengganti placeholder dengan data yang sesuai
+$jsCode = str_replace('{{LABELS}}', '"' . implode('", "', $labels) . '"', $jsCode);
+$jsCode = str_replace('{{COSTS}}', implode(', ', $costs), $jsCode);
+
+// Menampilkan grafik
+echo $jsCode;
+?>
+
+
+
+
               </div>
             </div>
           </div>
+
+
           <!-- ============================================================== -->
           <!-- RECENT SALES -->
           <!-- ============================================================== -->
@@ -375,21 +428,30 @@ if(! $_SESSION['login']){
                     </thead>
                     <tbody>
                     <?php
-                    $sql = "SELECT * from order_user"; 
+                    $sql = "SELECT laundry_orders.*, users.name, users.phn_num
+                    FROM laundry_orders
+                    JOIN users ON laundry_orders.customer_id = users.user_id;
+                    "; 
                     $hasil = $koneksi->query($sql); //memproses query
     if ($hasil->num_rows > 0) {
        //menampilkan data setiap barisnya
        while ($baris = $hasil->fetch_assoc()) {
-                       $id = $baris['id'];
+                       $id = $baris['order_id'];
                        $name = $baris['name'];
-                       $phone = $baris['phone'];
-                       $address =$baris['address'];
-                       $price = $baris['price'];
+                       $phone = $baris['phn_num'];
+                       $address =$baris['alamat'];
+                       $price = $baris['total_cost'];
                        $nota = $baris['nota'];
-                       $tanggal = $baris['tanggal'];
+                       $pickup_date = $baris['pickup_date'];
                        echo "<tr><td>$nota</td>";
-                       echo "<td>$name</td><td>$phone</td><td>$address</td>><td>$price</td><td>$tanggal</td><td> <a href='ubahdepartemen.php?id=$id'>Edit</a> | "; ?>
-             <a href="hapusdepartemen.php?id=<?php echo $id; ?>" onClick="return confirm('Anda yakin akan mengapus data ini?');">Delete</a></td></tr>
+                       echo "<td>$name</td>
+                       <td>$phone</td>
+                       <td>$address</td>
+                       <td>$price</td>
+                       <td>$pickup_date</td>
+                       <td> 
+                       <a href='ubahdepartemen.php?id=$id'>Edit</a> | "; ?>
+                    <a href="hapusdepartemen.php?id=<?php echo $id; ?>" onClick="return confirm('Anda yakin akan mengapus data ini?');">Delete</a></td></tr>
                     </tbody>
                     <?php          
        }	

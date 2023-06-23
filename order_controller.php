@@ -1,20 +1,57 @@
 <?php
-    $email = $_POST['email'];
+
+    $tanggal = $_POST['tanggal'];
+    $order = 'waiting';
+    $payment = ['gope'];
+    $payment_status = 'pending';
+    $berat = $_POST['berat'];
+    $price = $_POST['price'];
+    $pickup = $_POST['tanggal'];
+    $delivery_date = $_POST['tanggal'];
+    $nota = $_POST['nota'];
+    $address = $_POST['address'];
+
     $name = $_POST['name'];
     $phone = $_POST['phone'];
-    $address = $_POST['address'];
-    $price = $_POST['price'];
-    $nota = $_POST['nota'];
-    $tanggal = $_POST['tanggal'];
-    $paket = $_POST['paket'];
-    $berat = $_POST['berat'];
     $pewangi = $_POST['pewangi'];
-    $id_user = $_POST['id_user'];
+    
+    
+    
+    
+    
+    $paket = $_POST['paket'];
+    
+    $pewangi = $_POST['pewangi'];
+    $id_user = $_POST['id'];
     
     include 'koneksi.php';
 
 
-        $query = "INSERT INTO order_user (name,phone,address,price,nota, tanggal, paket, berat, pewangi, id_user) VALUES ('".$name."', '".$phone."', '".$address."', '".$price."', '".$nota."', '".$tanggal."', '".$paket."', '".$berat."', '".$pewangi."',  '".$id_user."')";
+        $query = "INSERT INTO `laundry_orders`
+        (customer_id, 
+        order_date, 
+        order_status, 
+        payment_status, 
+        total_weight, 
+        total_cost, 
+        pickup_date, 
+        delivery_date, 
+        nota, 
+        alamat, 
+        pewangi) 
+        VALUES ('".$id_user."', 
+        '".$tanggal."', 
+        '".$order."', 
+        '".$payment_status."', 
+        '".$berat."', 
+        '".$price."', 
+        '".$pickup."', 
+        '".$delivery_date."', 
+        '".$nota."', 
+        '".$address."', 
+        '".$pewangi."')";
+
+
         if($result = mysqli_query($koneksi, $query)){
             header("location:orderpayment.php");
         }else{

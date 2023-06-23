@@ -5,23 +5,24 @@
     $_SESSION['login'] = false;
   }else{
     $id = $_SESSION['id'];
-    $query = " select * from users where user_id= '$id' ";
+    $query = "SELECT * FROM users WHERE user_id = '$id'";
     $result = mysqli_query($koneksi, $query);
     $user = mysqli_fetch_assoc($result);
 
     $customer_query = "SELECT * FROM customers WHERE user_id = $id";
     $customer_result = mysqli_query($koneksi, $customer_query);
-    $customer = mysqli_fetch_assoc($result);
+    $customer = mysqli_fetch_assoc($customer_result);
 
     $customer_id = $customer["customer_id"];
     $subscription_type = $customer["subscription_type"];
 
-    $jumlah = mysqli_query($koneksi, "SELECT Count(total_cost) AS value_sum FROM laundry_orders where customer_id = '$customer_id'"); 
+    $jumlah = mysqli_query($koneksi, "SELECT COUNT(total_cost) AS jumlah FROM laundry_orders WHERE customer_id = '$customer_id'"); 
     $row = mysqli_fetch_assoc($jumlah); 
-    $sum = $row['value_sum'];
+    $sum = $row['jumlah'];
 
     $name = $user["name"];
     $image = $user["image"];
+
   }
 ?>
 
@@ -100,12 +101,7 @@
 
   <body>
     <!-- Spinner Start -->
-    <div
-      id="spinner"
-      class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
-    >
-      <div class="spinner-grow text-primary" role="status"></div>
-    </div>
+    
     <!-- Spinner End -->
 
     <!-- Navbar Start -->
@@ -209,7 +205,7 @@
       else{
         $newImageName = $name . " - " . date("Y.m.d") . " - " . date("h.i.sa"); // Generate new image name
         $newImageName .= '.' . $imageExtension;
-        $query = "UPDATE data_user SET image = '$newImageName' WHERE id = $id";
+        $query = "UPDATE users SET image = '$newImageName' WHERE user_id = $id";
         mysqli_query($koneksi, $query);
         move_uploaded_file($tmpName, 'img/' . $newImageName);
         echo

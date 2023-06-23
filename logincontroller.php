@@ -4,7 +4,7 @@
 
     $email = $_POST['loginemail'];
     $pass = $_POST['loginpassword'];
-    $q = "SELECT * FROM dataUser";
+    $q = "SELECT * FROM users";
 
     if(isset($_POST['login'])){
         if($query = mysqli_query($koneksi, $q)){
