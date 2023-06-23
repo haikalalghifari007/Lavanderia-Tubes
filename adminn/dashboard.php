@@ -10,7 +10,6 @@ session_start();
                 $result = mysqli_query($koneksi, $query);
                 $user = mysqli_fetch_assoc($result);
                 $name = $user["name"];
-                $name = $user["name"];
 }
 
 ?>
@@ -325,60 +324,7 @@ session_start();
                     </li>
                   </ul>
                 </div>
-                <?php
-// Data dummy
-$data = [
-    ['order_date' => '2023-06-01', 'total_cost' => 12000],
-    ['order_date' => '2023-06-02', 'total_cost' => 9050],
-    ['order_date' => '2023-06-03', 'total_cost' => 6500]
-];
 
-// Mengubah format tanggal menjadi string bulan dan tahun
-$labels = [];
-foreach ($data as $item) {
-    $date = date_create($item['order_date']);
-    $labels[] = date_format($date, 'M Y');
-}
-
-// Mengambil total biaya dari setiap data
-$costs = array_column($data, 'total_cost');
-
-// Kode JavaScript untuk menggambar grafik
-$jsCode = <<<EOD
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<canvas id="myChart"></canvas>
-<script>
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: [{{LABELS}}],
-            datasets: [{
-                label: 'Total Cost',
-                data: [{{COSTS}}],
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 2
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
-EOD;
-
-// Mengganti placeholder dengan data yang sesuai
-$jsCode = str_replace('{{LABELS}}', '"' . implode('", "', $labels) . '"', $jsCode);
-$jsCode = str_replace('{{COSTS}}', implode(', ', $costs), $jsCode);
-
-// Menampilkan grafik
-echo $jsCode;
-?>
 
 
 
