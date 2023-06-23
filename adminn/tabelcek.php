@@ -3,8 +3,23 @@
 <head>
     <title>Stock Quantities for Pewangi Flavors</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .container {
+        width: 1300px;
+        margin: 100px;
+        border: 3px solid #73AD21;
+        }
+        .tabel{
+            width: 900px;
+            margin: auto;
+            margin-top: 300px;
+            border: 3px solid #73AD21;
+        }
+    </style>
 </head>
 <body>
+
+    
     <canvas id="stockChart"></canvas>
 
     
@@ -23,27 +38,19 @@
 
                 $hasil = mysqli_query($koneksi, $query_pewangi);
 
-                if ($hasil->num_rows > 0) {
-
-                // menampilkan data setiap barisnya
-                    while ($baris = $hasil->fetch_assoc()) {
-                    echo $name = $baris["jumlah"];
-                    }   
-
-                } else {
-                    echo "Data tidak ditemukan";
-                }
     // Data
     
-    $flavors = ['Vanilla', 'Lemon', 'Chocolate', 'Cookies', 'Melon'];
-    $stock_quantities = $baris["jumlah"];
+    
+    $flavors = array();
+    $stock_quantities = array();
+    
+    // Fetch data and populate arrays
+    while ($row = mysqli_fetch_assoc($hasil)) {
+        $flavors[] = $row['pewangi'];
+        $stock_quantities[] = $row['jumlah'];
+    }
+    
     ?>
-
-
-
-
-
-
 
 
     <script>
@@ -74,5 +81,13 @@
             }
         });
     </script>
+
+    
+    
+
+
+
+
+    
 </body>
 </html>
