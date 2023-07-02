@@ -1,14 +1,19 @@
 <?php
 include '../koneksi.php';
 session_start();
-if(! $_SESSION['login']){
-  header("Location:login.php");
-} else{
+
+if (!isset($_SESSION['login']) || $_SESSION['login']) {
+  header("Location: ../login.php");
+} else {
   $id = $_SESSION['id'];
-  $query = " select * from data_user where id= '$id' ";
-  $result = mysqli_query($koneksi, $query);
-  $user = mysqli_fetch_assoc($result);
+                $query = " select * from users where user_id = '$id' ";
+                $result = mysqli_query($koneksi, $query);
+                $user = mysqli_fetch_assoc($result);
+                $name = $user["name"];
+
+  
 }
+
 
 ?>
 
@@ -54,12 +59,7 @@ if(! $_SESSION['login']){
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
-    <div class="preloader">
-      <div class="lds-ripple">
-        <div class="lds-pos"></div>
-        <div class="lds-pos"></div>
-      </div>
-    </div>
+    
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
@@ -141,19 +141,14 @@ if(! $_SESSION['login']){
               <!-- User profile and search -->
               <!-- ============================================================== -->
               <li>
-              <?php 
-                $user = $_SESSION['user'];
-                $id = $user['id'];
-                $sqledit = "Select * from data_user where id='$id'";
-                $hasiledit = $koneksi->query($sqledit); //memproses query
-              ?>
+              
                 <a class="profile-pic" href="#">
                   <img
                     src="plugins/images/users/varun.jpg"
                     alt="user-img"
                     width="36"
                     class="img-circle"
-                  /><span class="text-white font-medium"><?php echo $user['firstName']; ?></span></a
+                  /><span class="text-white font-medium"><?php echo $name; ?></span></a
                 >
               </li>
               <!-- ============================================================== -->
@@ -277,8 +272,8 @@ if(! $_SESSION['login']){
                           class="thumb-lg img-circle"
                           alt="img"
                       /></a>
-                      <h4 class="text-white mt-2">User Name</h4>
-                      <h5 class="text-white mt-2">info@myadmin.com</h5>
+                      <h4 class="text-white mt-2"><?php echo $name; ?></h4>
+                      <h5 class="text-white mt-2"><?php echo $email = $user["email"];; ?></h5>
                     </div>
                   </div>
                 </div>
@@ -354,21 +349,7 @@ if(! $_SESSION['login']){
                         ></textarea>
                       </div>
                     </div>
-                    <div class="form-group mb-4">
-                      <label class="col-sm-12">Select Country</label>
-
-                      <div class="col-sm-12 border-bottom">
-                        <select
-                          class="form-select shadow-none p-0 border-0 form-control-line"
-                        >
-                          <option>London</option>
-                          <option>India</option>
-                          <option>Usa</option>
-                          <option>Canada</option>
-                          <option>Thailand</option>
-                        </select>
-                      </div>
-                    </div>
+                    
                     <div class="form-group mb-4">
                       <div class="col-sm-12">
                         <button class="btn btn-success">Update Profile</button>
@@ -399,9 +380,9 @@ if(! $_SESSION['login']){
         <!-- footer -->
         <!-- ============================================================== -->
         <footer class="footer text-center">
-          Designed By Nedroid Distributed By Melaundry
+          Designed By Lavanderia Distributed By Melaundry
           <a href="https://www.wrappixel.com/"
-            >© MeLaundry, All Right Reserved.</a
+            >© Lavanderia, All Right Reserved.</a
           >
         </footer>
         <!-- ============================================================== -->

@@ -1,19 +1,22 @@
 <?php
   include 'koneksi.php';
   session_start();
-  if (! isset($_SESSION['login'])){
-    $_SESSION['login'] = false;
+  if ($_SESSION['login']){
+    
   }else{
     $id = $_SESSION['id'];
-    $query = " select * from users where user_id= '$id' ";
+    $query = "SELECT * FROM users WHERE user_id = '$id'";
     $result = mysqli_query($koneksi, $query);
     $user = mysqli_fetch_assoc($result);
-    
+
     $customer_query = "SELECT * FROM customers WHERE user_id = $id";
     $customer_result = mysqli_query($koneksi, $customer_query);
-    $customer = mysqli_fetch_assoc($result);
+    $customer = mysqli_fetch_assoc($customer_result);
 
     $subscription_type = $customer["subscription_type"];
+
+    
+
   }
 ?>
 
@@ -123,6 +126,9 @@
    
 <!-- order -->
 <section class="h-100 gradient-custom">
+
+
+
 <form action="order_controller.php" method="post">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -136,11 +142,7 @@
   
               </div><form>
                 <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="inputEmail4">Email</label>
-                    <input type="email" class="form-control" id="inputEmail4" placeholder="Email" value="<?php echo $user['email'] ?>" name="email"/>
-                    <input type="hidden" class="form-control" id="inputEmail4" placeholder="Email" value="<?php echo $user['user_id'] ?>" name="id_user"/>
-                  </div>
+                
                   <div class="form-group col-md-6">
                     <label for="inputEmail4">Name</label>
                     <input type="text" class="form-control" id="inputPassword4" placeholder="Username" value="<?php echo $user['name'] ?>" name="name"/> 
@@ -165,6 +167,8 @@
                   <div class="form-group col-md-6">
                   <form name="hasil">
       <label for="inputState">Pilihan Paket</label><br />
+
+
       <script>
       function multiplyBy() {
         
@@ -185,6 +189,7 @@
         } 
       }
     </script>
+
     <?php if(!$subscription_type == null){
       echo "<script>
           function multiplyBy() {
@@ -307,6 +312,8 @@ lakukan pembayaran dalam 1x25 menit.
                 <input type="hidden" class="form-control" id="datesc" placeholder="0" value="<?php echo date('Y-m-d'); ?>"  name="tanggal"/>
                 <input type="hidden" class="form-control" id="resultsc" placeholder="0"  name="price"/>
                 <input type="hidden" class="form-control" id="randomfieldsc" placeholder="0"  name="nota"/>
+
+                <input type="hidden" class="form-control" value="<?php echo $user['user_id']?>" name="id"/>
                 
             </div>
           </div>

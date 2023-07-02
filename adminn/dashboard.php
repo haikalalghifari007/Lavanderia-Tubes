@@ -1,13 +1,15 @@
 <?php
 include '../koneksi.php';
 session_start();
-if(! $_SESSION['login']){
-  header("Location:login.php");
+
+  if (! isset($_SESSION['login'])){
+    $_SESSION['login'] = false;
 } else{
                 $id = $_SESSION['id'];
-                $query = " select * from data_user where id= '$id' ";
+                $query = " select * from users where user_id= '$id' ";
                 $result = mysqli_query($koneksi, $query);
                 $user = mysqli_fetch_assoc($result);
+                $name = $user["name"];
 }
 
 ?>
@@ -57,12 +59,12 @@ if(! $_SESSION['login']){
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
-    <div class="preloader">
+    <!-- <div class="preloader">
       <div class="lds-ripple">
         <div class="lds-pos"></div>
         <div class="lds-pos"></div>
       </div>
-    </div>
+    </div> -->
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
@@ -135,19 +137,14 @@ if(! $_SESSION['login']){
               <!-- User profile and search -->
               <!-- ============================================================== -->
               <li>
-              <?php 
-                $user = $_SESSION['user'];
-                $id = $user['id'];
-                $sqledit = "Select * from data_user where id='$id'";
-                $hasiledit = $koneksi->query($sqledit); //memproses query
-              ?>
+              
                 <a class="profile-pic" href="#">
                   <img
                     src="plugins/images/users/varun.jpg"
                     alt="user-img"
                     width="36"
                     class="img-circle"
-                  /><span class="text-white font-medium"><?php echo $user['firstName']; ?></span></a
+                  /><span class="text-white font-medium"><?php echo $name; ?></span></a
                 >
               </li>
               <!-- ============================================================== -->
@@ -315,26 +312,35 @@ if(! $_SESSION['login']){
               <div class="white-box">
                 <h3 class="box-title">Products Monthly Sales</h3>
                 <div class="d-md-flex">
+                
                   <ul class="list-inline d-flex ms-auto">
                     <li class="ps-3">
                       <h5><i class="fa fa-circle me-1 text-info"></i>Subscription</h5>
                     </li>
                     <li class="ps-3">
                       <h5>
-                        <i class="fa fa-circle me-1 text-inverse"></i
+                        <i class="fa fa-circle me-1 text-inverse">
+                          </i
                         >User
                       </h5>
                     </li>
                   </ul>
+                  
+
                 </div>
-                <div id="ct-visits" style="height: 405px">
-                  <div class="chartist-tooltip" style="top: -17px; left: -12px">
-                    <span class="chartist-tooltip-value">6</span>
-                  </div>
-                </div>
+                <?php
+                  include 'tabelcek.php';
+                  ?>
+
+
+
+
+
               </div>
             </div>
           </div>
+
+
           <!-- ============================================================== -->
           <!-- RECENT SALES -->
           <!-- ============================================================== -->
@@ -375,21 +381,30 @@ if(! $_SESSION['login']){
                     </thead>
                     <tbody>
                     <?php
-                    $sql = "SELECT * from order_user"; 
+                    $sql = "SELECT laundry_orders.*, users.name, users.phn_num
+                    FROM laundry_orders
+                    JOIN users ON laundry_orders.customer_id = users.user_id;
+                    "; 
                     $hasil = $koneksi->query($sql); //memproses query
     if ($hasil->num_rows > 0) {
        //menampilkan data setiap barisnya
        while ($baris = $hasil->fetch_assoc()) {
-                       $id = $baris['id'];
+                       $id = $baris['order_id'];
                        $name = $baris['name'];
-                       $phone = $baris['phone'];
-                       $address =$baris['address'];
-                       $price = $baris['price'];
+                       $phone = $baris['phn_num'];
+                       $address =$baris['alamat'];
+                       $price = $baris['total_cost'];
                        $nota = $baris['nota'];
-                       $tanggal = $baris['tanggal'];
+                       $pickup_date = $baris['pickup_date'];
                        echo "<tr><td>$nota</td>";
-                       echo "<td>$name</td><td>$phone</td><td>$address</td>><td>$price</td><td>$tanggal</td><td> <a href='ubahdepartemen.php?id=$id'>Edit</a> | "; ?>
-             <a href="hapusdepartemen.php?id=<?php echo $id; ?>" onClick="return confirm('Anda yakin akan mengapus data ini?');">Delete</a></td></tr>
+                       echo "<td>$name</td>
+                       <td>$phone</td>
+                       <td>$address</td>
+                       <td>$price</td>
+                       <td>$pickup_date</td>
+                       <td> 
+                       <a href='ubahdepartemen.php?id=$id'>Edit</a> | "; ?>
+                    <a href="hapusdepartemen.php?id=<?php echo $id; ?>" onClick="return confirm('Anda yakin akan mengapus data ini?');">Delete</a></td></tr>
                     </tbody>
                     <?php          
        }	
