@@ -5,7 +5,7 @@ if(! $_SESSION['login']){
   header("Location:login.php");
 }else{
   $id = $_SESSION['id'];
-  $query = " select * from data_user where id= '$id' ";
+  $query = " select * from users where user_id= '$id' ";
   $result = mysqli_query($koneksi, $query);
   $user = mysqli_fetch_assoc($result);
 }
@@ -68,12 +68,12 @@ if(! $_SESSION['login']){
   <body>
     
     <!-- Spinner Start -->
-    <div
+    <!-- <div
       id="spinner"
       class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
     >
       <div class="spinner-grow text-primary" role="status"></div>
-    </div>
+    </div> -->
     <!-- Spinner End -->
 
     <!-- Navbar Start -->
@@ -121,7 +121,7 @@ if(! $_SESSION['login']){
     <div class="container mb-5 mt-3">
       <div class="row d-flex align-items-baseline">
         <div class="col-xl-9">
-          <p style="color: #7e8d9f;font-size: 20px;">Invoice >> <strong>ID User: <?php echo $user['id'] ?></strong></p>
+          <p style="color: #7e8d9f;font-size: 20px;">Invoice >> <strong>ID User: <?php echo $user['user_id'] ?></strong></p>
         </div>
         <div class="col-xl-3 float-end">
          
@@ -142,17 +142,17 @@ if(! $_SESSION['login']){
         <div class="row">
           <div class="col-xl-8">
             <ul class="list-unstyled">
-              <li class="text-muted">To: <span style="color:#5d9fc5 ;"><?php echo $user['firstName'], " ", $user['lastName'] ?></span></li>
-              <li class="text-muted"><?php echo $user['city'] ?></li>
-              <li class="text-muted"><?php echo $user['province'] ?></li>
-              <li class="text-muted"><i class="fas fa-phone"></i> <?php echo $user['phone'] ?></li>
+              <li class="text-muted">To: <span style="color:#5d9fc5 ;"><?php echo $user['name'] ?></span></li>
+              <li class="text-muted"><?php echo $user['name'] ?></li>
+              <li class="text-muted"><?php echo $user['name'] ?></li>
+              <li class="text-muted"><i class="fas fa-phone"></i> <?php echo $user['phn_num'] ?></li>
             </ul>
           </div>
           <div class="col-xl-4">
             <p class="text-muted">Invoice</p>
             <ul class="list-unstyled">
               <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
-                  class="fw-bold">ID User: </span><?php echo $user['id'] ?></li>
+                  class="fw-bold">ID User: </span><?php echo $user['user_id'] ?></li>
             
               <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
                   class="me-1 fw-bold">Status:</span><span class="badge badge-pill badge-success">
@@ -174,20 +174,25 @@ if(! $_SESSION['login']){
             </thead>
             <tbody>
                     <?php
-                    $result = mysqli_query($koneksi, "SELECT SUM(price) AS value_sum FROM order_user where id_user = '$id'"); 
+                    $result = mysqli_query($koneksi, "SELECT SUM(total_cost) AS value_sum FROM laundry_orders where customer_id = '$id'"); 
                     $row = mysqli_fetch_assoc($result); 
                     $sum = $row['value_sum'];
-                    $sql = "SELECT * from order_user where id_user = '$id'"; 
+                    $sql = "SELECT * 
+                    FROM laundry_orders
+                    JOIN users
+                    ON laundry_orders.customer_id = users.user_id
+                    WHERE laundry_orders.customer_id = 5
+                    "; 
                     $hasil = $koneksi->query($sql); //memproses query
     if ($hasil->num_rows > 0) {
        //menampilkan data setiap barisnya
        while ($baris = $hasil->fetch_assoc()) {
-                       $id = $baris['id'];
-                       $phone = $baris['phone'];
+                       $id = $baris['customer_id'];
+                       $phone = $baris['phn_num'];
                        $address =$baris['address'];
-                       $price = $baris['price'];
+                       $price = $baris['total_cost'];
                        $nota = $baris['nota'];
-                       $tanggal = $baris['tanggal'];
+                       $tanggal = $baris['order_date'];
                        echo "<tr><td>$nota</td>";
                        echo "<td>$phone</td><td>$address</td>><td>$price</td><td>$tanggal</td>" ?>
                     </tbody>

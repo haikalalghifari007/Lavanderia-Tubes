@@ -1,10 +1,9 @@
 <?php
 include 'koneksi.php';
   session_start();
-  if (! isset($_SESSION['login'])){
+  if (!isset($_SESSION['login'])){
     $_SESSION['login'] = false;
   }else{
-    
   }
 ?>
 
@@ -64,12 +63,12 @@ include 'koneksi.php';
 
   <body>
     <!-- Spinner Start -->
-    <div
+    <!-- <div
       id="spinner"
       class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
     >
       <div class="spinner-grow text-primary" role="status"></div>
-    </div>
+    </div> -->
     <!-- Spinner End -->
 
     <!-- Navbar Start -->
@@ -109,20 +108,27 @@ include 'koneksi.php';
               }
               else{
                 $id = $_SESSION['id'];
-                $query = " select * from data_user where id= '$id' ";
+                $query = " select * from users where user_id= '$id' ";
                 $result = mysqli_query($koneksi, $query);
                 $user = mysqli_fetch_assoc($result);
                 echo "<a href='index.php' class='nav-item nav-link active'>Home</a>
                 <a href='order.php' class='nav-item nav-link'>Order</a>
-                <a href='activity.php' class='nav-item nav-link'>Activity</a>
-                <div class='nav-item dropdown'>
+                <a href='activity.php' class='nav-item nav-link'>Activity</a>";
+                if($user['role'] == "admin"){
+                  echo "<div class='nav-item dropdown'>
+                  <a href='./adminn/dashboard.php' class='nav-item nav-link'>Dashboard</a>
+                  </div>";
+                }
+                echo "<div class='nav-item dropdown'>
                   <a href='#' class='nav-link dropdown-toggle' data-bs-toggle='dropdown'>Features</a>
                   <div class='dropdown-menu shadow-sm m-0'>
                       <a href='account.php' class='dropdown-item'>Account</a>
                       <a href='menu.php' class='dropdown-item'>Menu</a>
                       <a href='moreinfo.php' class='dropdown-item'>More info</a>";
+                      
               }
         ?>
+        
             </div>
         </div>
            
@@ -133,6 +139,7 @@ include 'koneksi.php';
               }
               else{
                 echo "<a href='controller_logout.php' class='btn btn-outline-success' style='color: rgb(0, 213, 255);width: 90px; height:40px; margin-top:20px; border-color: rgb(0, 213, 255);' >Logout</a>";
+                
               }
             ?>
                   <!-- <button data-toggle="modal" data-target="#loginModal" class="btn btn-outline-success" style="color: rgb(0, 213, 255);width: 90px; border-color: rgb(0, 213, 255);" type="button" >Login</button>  -->
@@ -168,7 +175,7 @@ include 'koneksi.php';
               echo "<h1 class='display-4 mb-3 animated slideInDown'>
               Welcome<br />"; ?>
 
-              <?php echo $user['firstName'], " ", $user['lastName']; ?>
+              <?php echo $user['name']; ?>
               <?php
               echo"
             </h1>

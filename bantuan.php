@@ -1,11 +1,12 @@
 <?php
   include 'koneksi.php';
   session_start();
-  if (! isset($_SESSION['login'])){
+  if (!isset($_SESSION['login'])){
     $_SESSION['login'] = false;
   }else{
     $id = $_SESSION['id'];
-    $query = " select * from data_user where id= '$id' ";
+    $_SESSION["login"] = true;
+    $query = " select * from users where user_id= '$id' ";
     $result = mysqli_query($koneksi, $query);
     $user = mysqli_fetch_assoc($result);
   }
@@ -65,12 +66,12 @@
 
   <body>
     <!-- Spinner Start -->
-    <div
+    <!-- <div
       id="spinner"
       class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
     >
       <div class="spinner-grow text-primary" role="status"></div>
-    </div>
+    </div> -->
     <!-- Spinner End -->
 
     <!-- Navbar Start -->
@@ -110,7 +111,7 @@
               }
               else{
                 $id = $_SESSION['id'];
-                $query = " select * from data_user where id= '$id' ";
+                $query = " select * from users where user_id= '$id' ";
                 $result = mysqli_query($koneksi, $query);
                 $user = mysqli_fetch_assoc($result);
                 echo "<a href='index.php' class='nav-item nav-link active'>Home</a>
@@ -215,7 +216,7 @@
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     Untuk informasi lebih lanjut hubungi kami: <br>
-                                     WA:08123456789 <br>
+                                     WA:082230395538 <br>
                                      Email:cs@melaundry.id
                                 </div>
                             </div>

@@ -1,21 +1,21 @@
 <?php
-include '../koneksi.php';
-session_start();
-
-if (!isset($_SESSION['login']) || $_SESSION['login']) {
-  header("Location: ../login.php");
-} else {
-  $id = $_SESSION['id'];
-                $query = " select * from users where user_id = '$id' ";
-                $result = mysqli_query($koneksi, $query);
-                $user = mysqli_fetch_assoc($result);
-                $name = $user["name"];
-
-  
-}
-
-
+  include '../koneksi.php';
+  session_start();
+  if (!isset($_SESSION['login'])){
+    header("Location: ../login.php");
+    $_SESSION['login'] = false;
+    header("Location: ../login.php");
+  }else{
+    $id = $_SESSION['id'];
+    $query = " select * from users where user_id = '$id' ";
+    $result = mysqli_query($koneksi, $query);
+    $user = mysqli_fetch_assoc($result);
+    $name = $user["name"];
+  }
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en">

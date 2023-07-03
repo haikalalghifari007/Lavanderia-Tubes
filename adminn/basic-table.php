@@ -1,13 +1,14 @@
 <?php
 include '../koneksi.php';
 session_start();
-if(! $_SESSION['login']){
-  header("Location:login.php");
+if (! isset($_SESSION['login'])){
+  $_SESSION['login'] = false;
 } else{
   $id = $_SESSION['id'];
-  $query = " select * from data_user where id= '$id' ";
+  $query = " select * from users where user_id= '$id' ";
   $result = mysqli_query($koneksi, $query);
   $user = mysqli_fetch_assoc($result);
+  $name = $user["name"];
 }
 
 ?>
@@ -54,12 +55,12 @@ if(! $_SESSION['login']){
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
-    <div class="preloader">
+    <!-- <div class="preloader">
       <div class="lds-ripple">
         <div class="lds-pos"></div>
         <div class="lds-pos"></div>
       </div>
-    </div>
+    </div> -->
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
@@ -143,8 +144,8 @@ if(! $_SESSION['login']){
               <li>
               <?php 
                 $user = $_SESSION['user'];
-                $id = $user['id'];
-                $sqledit = "Select * from data_user where id='$id'";
+                $id = $user['user_id'];
+                $sqledit = "Select * from users where user_id='$id'";
                 $hasiledit = $koneksi->query($sqledit); //memproses query
               ?>
                 <a class="profile-pic" href="#">
@@ -152,8 +153,8 @@ if(! $_SESSION['login']){
                     src="plugins/images/users/varun.jpg"
                     alt="user-img"
                     width="36"
-                    class="img-circle"
-                  /><span class="text-white font-medium"><?php echo $user['firstName']; ?></span></a
+                    class="img-circle"  
+                  /><span class="text-white font-medium"><?php echo $name; ?></span></a
                 >
               </li>
               <!-- ============================================================== -->
@@ -270,21 +271,21 @@ if(! $_SESSION['login']){
                     </thead>
                     <tbody>
                     <?php
-                    $sql = "SELECT * from data_user"; 
+                    $sql = "SELECT * from users"; 
                     $hasil = $koneksi->query($sql); //memproses query
     if ($hasil->num_rows > 0) {
        //menampilkan data setiap barisnya
        while ($baris = $hasil->fetch_assoc()) {
-                       $id = $baris['id'];
-                       $name = $baris['firstName'];
-                       $lname = $baris['lastName'];
+                       $id = $baris['user_id'];
+                       $name = $baris['name'];
+                      //  $lname = $baris['lastName'];
                        $email =$baris['email'];
-                       $province = $baris['province'];
-                       $city = $baris['city'];
+                      //  $province = $baris['province'];
+                      //  $city = $baris['city'];
                        $address = $baris['address'];
-                       $phone = $baris['phone'];
+                       $phone = $baris['phn_num'];
                        echo "<tr><td>$id</td>";
-                       echo "<td>$name $lname</td><td>$email</td><td>$province, $city, $address</td>><td>$phone</td><td> <a href='ubahdepartemen.php?id=$id'>Edit</a> | "; ?>
+                       echo "<td>$name </td><td>$email</td><td> $address</td>><td>$phone</td><td> <a href='ubahdepartemen.php?id=$id'>Edit</a> | "; ?>
              <a href="hapususer.php?id=<?php echo $id; ?>" onClick="return confirm('Anda yakin akan mengapus data ini?');">Delete</a></td></tr>
                     </tbody>
                     <?php          

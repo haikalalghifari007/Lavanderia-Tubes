@@ -1,10 +1,11 @@
 <?php
   include 'koneksi.php';
   session_start();
-  if ($_SESSION['login']){
-    
+  if (!$_SESSION['login']){
+    $_SESSION['login'] = false;
   }else{
     $id = $_SESSION['id'];
+    $_SESSION['login'] = true;
     $query = "SELECT * FROM users WHERE user_id = '$id'";
     $result = mysqli_query($koneksi, $query);
     $user = mysqli_fetch_assoc($result);
@@ -190,7 +191,7 @@
       }
     </script>
 
-    <?php if(!$subscription_type == null){
+    <?php if(!$subscription_type == "reguler"){
       echo "<script>
           function multiplyBy() {
           document.getElementById('result').innerHTML = 0;

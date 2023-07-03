@@ -6,7 +6,7 @@ if(! $_SESSION['login']){
 }else{
 
   
-  $query = " SELECT * FROM `order_user` WHERE id=(SELECT MAX(id) FROM `order_user`) ";
+  $query = " SELECT * FROM `laundry_orders` WHERE order_id=(SELECT MAX(order_id) FROM `laundry_orders`) ";
   $result = mysqli_query($koneksi, $query);
   $user = mysqli_fetch_assoc($result);
 
@@ -136,7 +136,7 @@ if(! $_SESSION['login']){
             <div class="d-flex pt-2">
               <div>
                 <p>
-                  <b>Paket Laundry <?php echo $user['paket']; ?></b>
+                  <b>Paket Laundry <?php echo $user['payment_method']; ?></b>
                 </p>
               </div>
             </div>
@@ -148,7 +148,7 @@ if(! $_SESSION['login']){
               <div class="d-flex pb-2">
                 <div>
                   <p>
-                    <b>Total Pembayaran <span class="text-success">Rp <?php echo $user['price']; ?></span></b>
+                    <b>Total Pembayaran <span class="text-success">Rp <?php echo $user['total_cost']; ?></span></b>
                   </p>
                 </div>
                 <div class="ms-auto">
@@ -229,7 +229,7 @@ if(! $_SESSION['login']){
              
               <div class="p-2 d-flex">
                 <div class="col-8">Berat cucian</div>
-                <div class="ms-auto"><?php echo $user['berat']; ?> kg</div>
+                <div class="ms-auto"><?php echo $user['total_weight']; ?> kg</div>
               </div>
               <div class="p-2 d-flex">
                 <div class="col-8"><?php echo $user['pewangi']; ?></div>
@@ -244,7 +244,7 @@ if(! $_SESSION['login']){
               <div class="border-top px-2 mx-2"></div>
               <div class="p-2 d-flex pt-3">
                 <div class="col-8"><b>Total</b></div>
-                <div class="ms-auto"><b class="text-success">Rp <?php echo $user['price']; ?></b></div>
+                <div class="ms-auto"><b class="text-success">Rp <?php echo $user['total_cost']; ?></b></div>
               </div>
             </div>
           </div>

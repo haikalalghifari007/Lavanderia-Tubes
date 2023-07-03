@@ -135,9 +135,9 @@
     if ($hasil->num_rows > 0) {
        //menampilkan data setiap barisnya
        while ($baris = $hasil->fetch_assoc()) {
-                       $price = $baris['price'];
+                       $price = $baris['total_weight'];
                        $nota = $baris['nota'];
-                       $tanggal = $baris['tanggal'];
+                       $tanggal = $baris['order_date'];
                        echo "<tr><td>$tanggal</td>";
                        echo "<td>$price</td><td><a href='map.php'>$nota</a></td>" ?>
                     </tbody>

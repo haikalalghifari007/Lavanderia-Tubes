@@ -1,10 +1,11 @@
 <?php
   include 'koneksi.php';
   session_start();
-  if (! isset($_SESSION['login'])){
+  if (!isset($_SESSION['login'])){
     $_SESSION['login'] = false;
   }else{
     $id = $_SESSION['id'];
+    $_SESSION["login"] = true;
     $query = "SELECT * FROM users WHERE user_id = '$id'";
     $result = mysqli_query($koneksi, $query);
     $user = mysqli_fetch_assoc($result);
@@ -321,15 +322,8 @@
                     <div class="row">
                       <div class="col-md-6 mb-4">
                         <div class="form-outline">
-                          <label class="form-label" for="form3Example1m">First name</label>
-                          <input type="text" id="form3Example1m" class="form-control form-control-lg" value="<?php echo $user['firstName'] ?>" name="firstName"/>
-
-                        </div>
-                      </div>
-                      <div class="col-md-6 mb-4">
-                        <div class="form-outline">
-                          <label class="form-label" for="form3Example1n">Last name</label>
-                          <input type="text" id="form3Example1n" class="form-control form-control-lg" value="<?php echo $user['lastName'] ?>" name="lastName" />
+                          <label class="form-label" for="form3Example1m">Name</label>
+                          <input type="text" id="form3Example1m" class="form-control form-control-lg" value="<?php echo $user['name'] ?>" name="firstName"/>
 
                         </div>
                       </div>
@@ -515,7 +509,7 @@
                     </div>
                     <div class="form-outline mb-4">
                       <label class="form-label" for="form3Example9">Phone number</label>
-                      <input type="text" id="form3Example9" class="form-control form-control-lg" value="<?php echo $user['phone'] ?>" name="phone" />
+                      <input type="text" id="form3Example9" class="form-control form-control-lg" value="<?php echo $user['phn_num'] ?>" name="phone" />
                     </div>
                     <div class="form-outline mb-4">
                       <label class="form-label" for="form3Example90">Address</label>
@@ -523,11 +517,11 @@
                     </div>
                     <div class="form-outline mb-4">
                       <label class="form-label" for="form3Example99">Password</label>
-                      <input type="password" id="form3Example99" class="form-control form-control-lg" name="password"  />
+                      <input type="password" id="form3Example99" class="form-control form-control-lg" name="password" required />
                     </div>
                     <div class="form-outline mb-4">
                       <label class="form-label" for="form3Example97">Repeat Password</label>
-                      <input type="password" id="form3Example97" class="form-control form-control-lg" name="repassword" />
+                      <input type="password" id="form3Example97" class="form-control form-control-lg" name="repassword" required />
                     </div>
                     <div class="d-flex justify-content-end pt-3">
                       <button  class="btn btn-outline-success" style="color:white;width: 90px; background-color:rgb(0, 213, 255) ; border-color: rgb(0, 213, 255);">Submit</button>
@@ -596,14 +590,14 @@
                     <h5 class="mb-4">MeLaundry</h5>
                     <?php
 
-                      if(! $_SESSION['login']){ //IKIII
+                      if(!$_SESSION['login']){ //IKIII
                         echo "<a class='btn btn-link' href='index.php'>Home</a>
                         <a class='btn btn-link' href='login.php'>Order</a>
                         <a class='btn btn-link' href='login.php'>Activity</a>
                         <a class='btn btn-link' href='login.php'>Account</a>";
                       }
                       else{
-                        echo "<a class='btn btn-link' href='index.php'>Home</a>
+                        echo "<a class='btn btn-link' href='index.php'>Homes</a>
                         <a class='btn btn-link' href='order.php'>Order</a>
                         <a class='btn btn-link' href='activity.php'>Activity</a>
                         <a class='btn btn-link' href='account.php'>Account</a>";

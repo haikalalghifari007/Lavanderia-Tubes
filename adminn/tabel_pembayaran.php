@@ -4,21 +4,18 @@
     <title>Stock Quantities for Pewangi Flavors</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        .container {
-        width: 1300px;
-        margin: 100px;
-        border: 3px solid #73AD21;
-        }
+        
         .tabel{
-            width: 700px;
+            width: 800px;
             margin: auto;
         }
+        
     </style>
 </head>
 <body>
 
     <div class="tabel">
-    <canvas id="satu"></canvas>  
+        <canvas id="satu"></canvas>  
 
             <?php
             include '../koneksi.php';   
@@ -52,6 +49,8 @@
                 var flavors = <?php echo json_encode($flavors); ?>;
                 var stockQuantities = <?php echo json_encode($stock_quantities); ?>;
 
+                var colors = ['rgba(0, 123, 255, 1)', 'rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)', 'rgba(128, 128, 128, 1)', 'rgba(255, 0, 0, 1)', 'rgba(0, 255, 0, 1)', 'rgba(0, 0, 255, 1)', 'rgba(255, 255, 0, 1)'];(flavors.length);
+                
                 // Create chart
                 var ctx = document.getElementById('satu').getContext('2d');
                 var chart = new Chart(ctx, {
@@ -59,9 +58,9 @@
                     data: {
                         labels: flavors,
                         datasets: [{
-                            label: 'Jumlah Pemesanan Pewangi',
+                            label: 'Pembayaran',
                             data: stockQuantities,
-                            backgroundColor: 'rgba(0, 123, 255, 0.5)', // Set desired background color
+                            backgroundColor: colors, // Set desired background color
                             borderColor: 'rgba(0, 123, 255, 1)', // Set desired border color
                             borderWidth: 1
                         }]
@@ -74,6 +73,8 @@
                         }
                     }
                 });
+
+                
             </script>
 
     </div>

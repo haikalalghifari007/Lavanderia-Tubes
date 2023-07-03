@@ -6,6 +6,7 @@ session_start();
     $_SESSION['login'] = false;
 } else{
         $id = $_SESSION['id'];
+        $_SESSION['login'] = true;
         $query = "SELECT * FROM users WHERE user_id = '$id'";
         $result = mysqli_query($koneksi, $query);
         $user = mysqli_fetch_assoc($result);
@@ -97,7 +98,7 @@ session_start();
             <!-- ============================================================== -->
             <!-- Logo -->
             <!-- ============================================================== -->
-            <a class="navbar-brand" href="dashboard.php">
+            <a class="navbar-brand" href="../index.php">
               <!-- Logo icon -->
               <b class="logo-icon">
                 <!-- Dark Logo icon -->
@@ -342,9 +343,12 @@ session_start();
                   
 
                 </div>
+                <div class="d-md-flex">
                 <?php
                   include 'tabel_pembayaran.php';
                   ?>
+                </div>
+                
 
 
 
@@ -357,7 +361,7 @@ session_start();
           <div class="row">
             <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
               <div class="white-box">
-                <h3 class="box-title">Products Monthly Sales</h3>
+                <h3 class="box-title">Stok Pewangi</h3>
                 <div class="d-md-flex">
                 
                   <ul class="list-inline d-flex ms-auto">
