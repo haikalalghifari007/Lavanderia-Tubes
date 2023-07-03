@@ -18,15 +18,15 @@
 <body>
 
     <div class="tabel">
-    <canvas id="stockChart"></canvas>  
+    <canvas id="satu"></canvas>  
 
             <?php
             include '../koneksi.php';   
             // Data dummy
 
-                        $query_pewangi = "SELECT pewangi, COUNT(*) AS jumlah
+                        $query_pewangi = "SELECT payment_method, COUNT(*) AS jumlah
                         FROM laundry_orders
-                        GROUP BY pewangi;";
+                        GROUP BY payment_method;";
 
 
                         $hasil = mysqli_query($koneksi, $query_pewangi);
@@ -39,9 +39,8 @@
 
             // Fetch data and populate arrays
             while ($row = mysqli_fetch_assoc($hasil)) {
-                $flavors[] = $row['pewangi'];
+                $flavors[] = $row['payment_method'];
                 $stock_quantities[] = $row['jumlah'];
-                echo $stock_quantities[] = $row['jumlah'] ;
                 // echo $flavors[] = $row['pewangi'] ;
             }
 
@@ -54,7 +53,7 @@
                 var stockQuantities = <?php echo json_encode($stock_quantities); ?>;
 
                 // Create chart
-                var ctx = document.getElementById('stockChart').getContext('2d');
+                var ctx = document.getElementById('satu').getContext('2d');
                 var chart = new Chart(ctx, {
                     type: 'bar',
                     data: {

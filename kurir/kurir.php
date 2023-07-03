@@ -318,101 +318,79 @@ session_start();
               </div>
             </div>
           </div>
-          <!-- ============================================================== -->
-          <!-- PRODUCTS YEARLY SALES -->
-          <!-- ============================================================== -->
-          <div class="row">
-            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-              <div class="white-box">
-                <h3 class="box-title">Products Monthly Sales</h3>
-                <div class="d-md-flex">
-                
-                  <ul class="list-inline d-flex ms-auto">
-                    <li class="ps-3">
-                      <h5><i class="fa fa-circle me-1 text-info"></i>Subscription</h5>
-                    </li>
-                    <li class="ps-3">
-                      <h5>
-                        <i class="fa fa-circle me-1 text-inverse">
-                          </i
-                        >User
-                      </h5>
-                    </li>
-                  </ul>
-                  
-
-                </div>
-                <?php
-                  include 'tabel_pembayaran.php';
-                  ?>
+          
 
 
 
 
 
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-              <div class="white-box">
-                <h3 class="box-title">Products Monthly Sales</h3>
-                <div class="d-md-flex">
-                
-                  <ul class="list-inline d-flex ms-auto">
-                    <li class="ps-3">
-                      <h5><i class="fa fa-circle me-1 text-info"></i>Subscription</h5>
-                    </li>
-                    <li class="ps-3">
-                      <h5>
-                        <i class="fa fa-circle me-1 text-inverse">
-                          </i
-                        >User
-                      </h5>
-                    </li>
-                  </ul>
-                  
-
-                </div>
-                <?php
-                  include 'tabel_pewangi.php';
-                  ?>
-
-
-
-
-
-              </div>
-            </div>
-          </div>
-
-
-          <!-- ============================================================== -->
-          <!-- RECENT SALES -->
-          <!-- ============================================================== -->
+          
           <div class="row">
             <div class="col-md-12 col-lg-12 col-sm-12">
               <div class="white-box">
                 <div class="d-md-flex mb-3">
                   <h3 class="box-title mb-0">Order List</h3>
-                  <div class="col-md-3 col-sm-4 col-xs-6 ms-auto">
-                    <select class="form-select shadow-none row border-top">
-                      <option>January 2022</option>
-                      <option>February 2022</option>
-                      <option>March 2022</option>
-                      <option>April 2022</option>
-                      <option>May 2022</option>
-                      <option>June 2022</option>
-                      <option>July 2022</option>
-                      <option>August 2022</option>
-                      <option>September 2022</option>
-                      <option>October 2022</option>
-                      <option>November 2022</option>
-                      <option>December 2021</option>
+                  <div class="col-md-3 col-sm-4 col-xs-6 ms-auto" >
+                      <select name                                                          
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      th" class="form-select shadow-none border-top">
+                      <option>Month</option>
+                      <?php
+                        for($month = 1; $month <= 12; $month++)
+                        echo"<option value = '".$month."'>".$month."</option>";
+                      ?>
+                    </select>
+                    
+
+                    <select name = "year" class="form-select shadow-none  border-top">  
+                      <option>Year</option>
+                      <?php
+                        $y = date("Y", strtotime("+8 HOURS"));
+                        for($year = 1950; $y >= $year; $y--){
+                          echo "<option value = '".$y."'>".$y."</option>";
+                        }
+                      ?>
                     </select>
                   </div>
                 </div>
+
+
+                                <?php
+                // Assuming you have a selected month and year from the user
+                $selectedMonth = 6; // June
+                $selectedYear = 2023;
+
+                // Construct the SQL query
+
+                
+                $sql2 = "SELECT * FROM laundry_orders
+                        WHERE MONTH(order_date) = $selectedMonth
+                        AND YEAR(order_date) = $selectedYear";
+
+                
+                ?>
+
+
+
                 <div class="table-responsive">
                   <table class="table no-wrap">
                     <thead>
@@ -423,7 +401,6 @@ session_start();
                         <th class="border-top-0">Pickup Address</th>
                         <th class="border-top-0">Price</th>
                         <th class="border-top-0">Date Order</th>
-                        <th class="border-top-0">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -433,38 +410,44 @@ session_start();
                     JOIN users ON laundry_orders.customer_id = users.user_id;
                     "; 
                     $hasil = $koneksi->query($sql); //memproses query
-    if ($hasil->num_rows > 0) {
-       //menampilkan data setiap barisnya
-       while ($baris = $hasil->fetch_assoc()) {
-                       $id = $baris['order_id'];
-                       $name = $baris['name'];
-                       $phone = $baris['phn_num'];
-                       $address =$baris['alamat'];
-                       $price = $baris['total_cost'];
-                       $nota = $baris['nota'];
-                       $pickup_date = $baris['pickup_date'];
-                       echo "<tr><td>$nota</td>";
-                       echo "<td>$name</td>
-                       <td>$phone</td>
-                       <td>$address</td>
-                       <td>$price</td>
-                       <td>$pickup_date</td>
-                       <td> 
-                       <a href='ubahdepartemen.php?id=$id'>Edit</a> | "; ?>
-                    <a href="hapusdepartemen.php?id=<?php echo $id; ?>" onClick="return confirm('Anda yakin akan mengapus data ini?');">Delete</a></td></tr>
-                    </tbody>
-                    <?php          
-       }	
-       echo "</table>";
-    } else {
-            echo "Data tidak ditemukan";
-    }
-    $koneksi->close(); // menutup koneksi
-?>
+                    if ($hasil->num_rows > 0) {
+                      //menampilkan data setiap barisnya
+                      while ($baris = $hasil->fetch_assoc()) {
+                                      $id = $baris['order_id'];
+                                      $name = $baris['name'];
+                                      $phone = $baris['phn_num'];
+                                      $address =$baris['alamat'];
+                                      $price = $baris['total_cost'];
+                                      $nota = $baris['nota'];
+                                      $pickup_date = $baris['pickup_date'];
+                                      echo "<tr><td>$nota</td>";
+                                      echo "<td>$name</td>
+                                      <td>$phone</td>
+                                      <td>$address</td>
+                                      <td>$price</td>
+                                      <td>$pickup_date</td>"; 
+                                      ?>
+                                      </tr>
+                                      
+                                    </tbody>
+                                    <?php          
+                      }	
+                      echo "</table>";
+                    } else {
+                            echo "Data tidak ditemukan";
+                    }
+                    $koneksi->close(); // menutup koneksi
+                ?>
                 </div>
               </div>
             </div>
           </div>
+
+
+
+
+
+
           <!-- ============================================================== -->
           
         <!-- ============================================================== -->

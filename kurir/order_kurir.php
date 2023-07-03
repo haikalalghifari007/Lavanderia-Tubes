@@ -343,40 +343,7 @@ session_start();
 
                 </div>
                 <?php
-                  include 'tabel_pembayaran.php';
-                  ?>
-
-
-
-
-
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-              <div class="white-box">
-                <h3 class="box-title">Products Monthly Sales</h3>
-                <div class="d-md-flex">
-                
-                  <ul class="list-inline d-flex ms-auto">
-                    <li class="ps-3">
-                      <h5><i class="fa fa-circle me-1 text-info"></i>Subscription</h5>
-                    </li>
-                    <li class="ps-3">
-                      <h5>
-                        <i class="fa fa-circle me-1 text-inverse">
-                          </i
-                        >User
-                      </h5>
-                    </li>
-                  </ul>
-                  
-
-                </div>
-                <?php
-                  include 'tabel_pewangi.php';
+                  include 'tabelcek_copy.php';
                   ?>
 
 

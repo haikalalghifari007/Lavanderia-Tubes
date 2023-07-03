@@ -51,19 +51,22 @@ session_start();
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="plugins/images/favicon.png"
+      href="../plugins/images/favicon.png"
     />
     <!-- Custom CSS -->
     <link
-      href="plugins/bower_components/chartist/dist/chartist.min.css"
+      href="../plugins/bower_components/chartist/dist/chartist.min.css"
       rel="stylesheet"
     />
     <link
       rel="stylesheet"
-      href="plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css"
+      href="../plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css"
     />
     <!-- Custom CSS -->
-    <link href="css/style.min.css" rel="stylesheet" />
+    <link href=".../css/style.min.css" rel="stylesheet" />
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
   </head>
 
   <body>
@@ -341,42 +344,9 @@ session_start();
                   </ul>
                   
 
-                </div>
+                </div>  
                 <?php
-                  include 'tabel_pembayaran.php';
-                  ?>
-
-
-
-
-
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-              <div class="white-box">
-                <h3 class="box-title">Products Monthly Sales</h3>
-                <div class="d-md-flex">
-                
-                  <ul class="list-inline d-flex ms-auto">
-                    <li class="ps-3">
-                      <h5><i class="fa fa-circle me-1 text-info"></i>Subscription</h5>
-                    </li>
-                    <li class="ps-3">
-                      <h5>
-                        <i class="fa fa-circle me-1 text-inverse">
-                          </i
-                        >User
-                      </h5>
-                    </li>
-                  </ul>
-                  
-
-                </div>
-                <?php
-                  include 'tabel_pewangi.php';
+                  include '../adminn/tabelcek_copy.php';
                   ?>
 
 
