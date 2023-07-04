@@ -12,7 +12,7 @@ session_start();
         $user = mysqli_fetch_assoc($result);
         $name = $user["name"];
         
-        $banyak_user = "SELECT COUNT(*) AS total_users FROM users";
+        $banyak_user = "SELECT COUNT(*) AS total_users FROM users where role = 'customer'";
         $result = mysqli_query($koneksi, $banyak_user);
         $banyak = mysqli_fetch_assoc($result);
         $total = $banyak["total_users"];
@@ -242,10 +242,10 @@ session_start();
           <!-- ============================================================== -->
           <!-- Three charts -->
           <!-- ============================================================== -->
-          <div class="row justify-content-center">
-            <div class="col-lg-4 col-md-12">
+          <div class="row ">
+            <div class="col-lg-6 col-md-12">
               <div class="white-box analytics-info">
-                <h3 class="box-title">Total Member
+                <h3 class="box-title">Total Customer
                 </h3>
                 <ul class="list-inline two-part d-flex align-items-center mb-0">
                   <li>
@@ -268,7 +268,7 @@ session_start();
                 </ul>
               </div>
             </div>
-            <div class="col-lg-4 col-md-12">
+            <!-- <div class="col-lg-4 col-md-12">
               <div class="white-box analytics-info">
                 <h3 class="box-title">Total Sales
                   
@@ -293,8 +293,8 @@ session_start();
                   </li>
                 </ul>
               </div>
-            </div>
-            <div class="col-lg-4 col-md-12">
+            </div> -->
+            <div class="col-lg-6 col-md-6">
               <div class="white-box analytics-info">
                 <h3 class="box-title">Total Orders</h3>
                 <ul class="list-inline two-part d-flex align-items-center mb-0">
@@ -325,31 +325,21 @@ session_start();
           <div class="row">
             <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
               <div class="white-box">
-                <h3 class="box-title">Products Monthly Sales</h3>
+                <h3 class="box-title">Stok Pewangi</h3>
                 <div class="d-md-flex">
                 
-                  <ul class="list-inline d-flex ms-auto">
-                    <li class="ps-3">
-                      <h5><i class="fa fa-circle me-1 text-info"></i>Subscription</h5>
-                    </li>
-                    <li class="ps-3">
-                      <h5>
-                        <i class="fa fa-circle me-1 text-inverse">
-                          </i
-                        >User
-                      </h5>
-                    </li>
-                  </ul>
+                  
                   
 
                 </div>
                 <div class="d-md-flex">
-                <?php
-                  include 'tabel_pembayaran.php';
+                
+                  <?php
+                  include 'tabel_pewangi.php';
                   ?>
+
                 </div>
                 
-
 
 
 
@@ -361,10 +351,10 @@ session_start();
           <div class="row">
             <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
               <div class="white-box">
-                <h3 class="box-title">Stok Pewangi</h3>
+                <h3 class="box-title">Pembayaran</h3>
                 <div class="d-md-flex">
                 
-                  <ul class="list-inline d-flex ms-auto">
+                  <!-- <ul class="list-inline d-flex ms-auto">
                     <li class="ps-3">
                       <h5><i class="fa fa-circle me-1 text-info"></i>Subscription</h5>
                     </li>
@@ -375,14 +365,14 @@ session_start();
                         >User
                       </h5>
                     </li>
-                  </ul>
+                  </ul> -->
                   
 
                 </div>
+                
                 <?php
-                  include 'tabel_pewangi.php';
+                  include 'tabel_pembayaran.php';
                   ?>
-
 
 
 

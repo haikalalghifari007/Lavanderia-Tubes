@@ -1,3 +1,29 @@
+<?php
+  include 'koneksi.php';
+  session_start();
+  if (!$_SESSION['login']){
+    $_SESSION['login'] = false;
+  }else{
+    $id = $_SESSION['id'];
+    $_SESSION['login'] = true;
+    $query = "SELECT MAX(order_status) AS nomor_status
+    FROM laundry_orders
+    WHERE customer_id = 6
+    ORDER BY order_status DESC
+    LIMIT 1;
+    ";
+    $result = mysqli_query($koneksi, $query);
+    $user = mysqli_fetch_assoc($result);
+    $status = $user["nomor_status"];
+
+
+
+
+
+    
+
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,12 +81,12 @@
   <body>
     
     <!-- Spinner Start -->
-    <div
+    <!-- <div
       id="spinner"
       class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
     >
       <div class="spinner-grow text-primary" role="status"></div>
-    </div>
+    </div> -->
     <!-- Spinner End -->
 
     <!-- Navbar Start -->
@@ -152,11 +178,15 @@
                     
                     </div>
                   </div>
+                  
       
+
+                  
+
                   <ul id="progressbar-2" class="d-flex justify-content-between mx-0 mt-0 mb-5 px-0 pt-0 pb-2">
                     <li class="step0 active text-center" id="step1"></li>
                     <li class="step0 active text-center" id="step2"></li>
-                    <li class="step0 active text-center" id="step3"></li>
+                    <li class="step0 text-muted text-center" id="step3"></li>
                     <li class="step0 text-muted text-end" id="step4"></li>
                   </ul>
 
@@ -166,8 +196,22 @@
                     <div class="d-lg-flex align-items-center">
                       <i class="fas fa-clipboard-list fa-3x me-lg-4 mb-3 mb-lg-0"></i>
                       <div>
-                        <p class="fw-bold mb-1">Order</p>
+                        <p class="fw-bold mb-1">Order <?php 
+                  
+                  if ($status === "1") {
+                    echo "111111111111111111111111111";
+                } elseif ($status === "2") {
+                    echo "2222222222222222222";
+                } elseif ($status === "3") {
+                    echo "33333333333333333333333";
+                } elseif ($status === "4") {
+                    echo "4444444444444444444444444444";
+                }
+                
+
+                  ?></p>
                         <p class="fw-bold mb-0">Processed</p>
+                        
                       </div>
                     </div>
                     <div class="d-lg-flex align-items-center">
@@ -224,7 +268,13 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h5 class="mb-4">Hubungi Kami</h5>
-                    <p><i class="fa fa-map-marker-alt me-3"></i>Kabupaten Sleman, DIY</p>
+                    <p><i class="fa fa-map-marker-alt me-3"></i>Kabupaten Sleman, DIY
+                    
+                    
+                          
+                  
+                        
+                       </p>
                     <p><i class="fa fa-phone-alt me-3"></i>+62 812-3456-789</p>
                     <p><i class="fa fa-envelope me-3"></i>cs@melaundry.id</p>
                 </div>

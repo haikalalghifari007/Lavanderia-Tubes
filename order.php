@@ -167,6 +167,9 @@
                 <div class="form-row">
                   <div class="form-group col-md-6">
                   <form name="hasil">
+
+
+                  
       <label for="inputState">Pilihan Paket</label><br />
 
 
@@ -191,14 +194,16 @@
       }
     </script>
 
-    <?php if(!$subscription_type == "reguler"){
+    <?php if($subscription_type == "gold" || $subscription_type == "royale" ){
       echo "<script>
           function multiplyBy() {
-          document.getElementById('result').innerHTML = 0;
-          document.getElementById('resultsc').value = 0;
+          document.getElementById('result').innerHTML = num1 * 0;
+          document.getElementById('resultsc').value = num1 * 0;
           }
       </script>";
-    }?>
+    }
+    ?>
+    
       <select
       onclick="multiplyBy()"
         name="paket"
@@ -223,16 +228,16 @@
                     <select style="background-color: white;" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="pewangi">
                       Pilihan Paket
                     </button>>
-                      <option>Vanilla</option>
-                      <option>Lemon</option>
-                      <option>Cookies</option>
-                      <option>Chocolate</option>
-                      <option>Cinnamon</option>
-                      <option>Lavender</option>
-                      <option>Melon</option>
-                      <option>Semangka</option>
-                      <option>Oreo</option>
-                      <option>Teh</option>
+                      <option>vanilla</option>
+                      <option>lemon</option>
+                      <option>cookies</option>
+                      <option>chocolate</option>
+                      <option>cinnamon</option>
+                      <option>lavender</option>
+                      <option>melon</option>
+                      <option>semangka</option>
+                      <option>oreo</option>
+                      <option>teh</option>
                     </select>
                   
                   </div>

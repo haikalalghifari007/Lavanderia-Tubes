@@ -6,7 +6,11 @@ if(! $_SESSION['login']){
 }else{
 
   
-  $query = " SELECT * FROM `laundry_orders` WHERE order_id=(SELECT MAX(order_id) FROM `laundry_orders`) ";
+  $query = " SELECT lo.*, c.subscription_type
+  FROM laundry_orders lo
+  JOIN customers c ON lo.customer_id = c.customer_id
+  WHERE lo.order_id = (SELECT MAX(order_id) FROM laundry_orders);
+   ";
   $result = mysqli_query($koneksi, $query);
   $user = mysqli_fetch_assoc($result);
 
@@ -136,7 +140,7 @@ if(! $_SESSION['login']){
             <div class="d-flex pt-2">
               <div>
                 <p>
-                  <b>Paket Laundry <?php echo $user['payment_method']; ?></b>
+                  <b>Paket Laundry <?php echo $user['subscription_type']; ?></b>
                 </p>
               </div>
             </div>

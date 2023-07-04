@@ -1,6 +1,6 @@
 <?php
     $tanggal = $_POST['tanggal'];
-    $order = 'waiting';
+    $order = '1';
     $payment = ['gope']; 
     $payment_status = 'pending';
     $berat = $_POST['berat'];

@@ -3,7 +3,7 @@ include 'koneksi.php';
 session_start();
 $id = $_SESSION['id'];
 
-        $sqledit = "Update data_user set status = 'Royale Pass' where id='$id'";
+        $sqledit = "Update customers set subscription_type = 'royale' where customer_id='$id'";
         if ($koneksi->query($sqledit) === TRUE) {
             echo "<script>alert('Berhasil langganan');  window.location = 'success.php'; </script>";
           } else {
