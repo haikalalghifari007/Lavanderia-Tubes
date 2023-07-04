@@ -11,6 +11,7 @@ session_start();
         $result = mysqli_query($koneksi, $query);
         $user = mysqli_fetch_assoc($result);
         $name = $user["name"];
+        $image = $user["image"];
         
         $banyak_user = "SELECT COUNT(*) AS total_users FROM users where role = 'customer'";
         $result = mysqli_query($koneksi, $banyak_user);
@@ -102,7 +103,7 @@ session_start();
               <!-- Logo icon -->
               <b class="logo-icon">
                 <!-- Dark Logo icon -->
-                <img src="Logo.png" alt="homepage" />
+                y
               </b>
               <!--End Logo icon -->
             </a>
@@ -151,12 +152,15 @@ session_start();
               <li>
               
                 <a class="profile-pic" href="#">
-                  <img
-                    src="plugins/images/users/varun.jpg"
+                <img
+                src="../img/<?php echo $image; ?>"
                     alt="user-img"
-                    width="36"
+                    width="38px"
+                    height="38px"
                     class="img-circle"
-                  /><span class="text-white font-medium"><?php echo $name; ?></span></a
+                
+                  /><span class="text-white font-medium"><?php echo $name; ?></span>
+                  </a
                 >
               </li>
               <!-- ============================================================== -->
@@ -197,6 +201,16 @@ session_start();
                 >
                   <i class="fa fa-user" aria-hidden="true"></i>
                   <span class="hide-menu">Profile</span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="update_status.php"
+                  aria-expanded="false"
+                >
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                  <span class="hide-menu">Update Status</span>
                 </a>
               </li>
               <li class="sidebar-item">
@@ -322,6 +336,32 @@ session_start();
           <!-- ============================================================== -->
           <!-- PRODUCTS YEARLY SALES -->
           <!-- ============================================================== -->
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+              <div class="white-box">
+                <h3 class="box-title">Total Pendapatan Per Bulan</h3>
+                <div class="d-md-flex">
+                
+                  
+                  
+
+                </div>
+                <div class="d-md-flex">
+                
+                <?php
+                  include 'tabel_cost.php';
+                  ?>
+
+                </div>
+                
+
+
+
+
+              </div>
+            </div>
+          </div>
+          
           <div class="row">
             <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
               <div class="white-box">

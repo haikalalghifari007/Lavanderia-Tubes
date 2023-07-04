@@ -9,6 +9,7 @@ if (! isset($_SESSION['login'])){
   $result = mysqli_query($koneksi, $query);
   $user = mysqli_fetch_assoc($result);
   $name = $user["name"];
+  $image = $user["image"];
 }
 
 ?>
@@ -82,7 +83,7 @@ if (! isset($_SESSION['login'])){
             <!-- ============================================================== -->
             <!-- Logo -->
             <!-- ============================================================== -->
-            <a class="navbar-brand" href="dashboard.php">
+            <a class="navbar-brand" href="../index.php">
               <!-- Logo icon -->
               <b class="logo-icon">
                 <!-- Dark Logo icon -->
@@ -110,15 +111,6 @@ if (! isset($_SESSION['login'])){
             id="navbarSupportedContent"
             data-navbarbg="skin5"
           >
-            <ul class="navbar-nav d-none d-md-block d-lg-none">
-              <li class="nav-item">
-                <a
-                  class="nav-toggler nav-link waves-effect waves-light text-white"
-                  href="javascript:void(0)"
-                  ><i class="ti-menu ti-close"></i
-                ></a>
-              </li>
-            </ul>
             <!-- ============================================================== -->
             <!-- Right side toggle and nav items -->
             <!-- ============================================================== -->
@@ -142,19 +134,17 @@ if (! isset($_SESSION['login'])){
               <!-- User profile and search -->
               <!-- ============================================================== -->
               <li>
-              <?php 
-                $user = $_SESSION['user'];
-                $id = $user['user_id'];
-                $sqledit = "Select * from users where user_id='$id'";
-                $hasiledit = $koneksi->query($sqledit); //memproses query
-              ?>
+              
                 <a class="profile-pic" href="#">
-                  <img
-                    src="plugins/images/users/varun.jpg"
+                <img
+                src="../img/<?php echo $image; ?>"
                     alt="user-img"
-                    width="36"
-                    class="img-circle"  
-                  /><span class="text-white font-medium"><?php echo $name; ?></span></a
+                    width="38px"
+                    height="38px"
+                    class="img-circle"
+                
+                  /><span class="text-white font-medium"><?php echo $name; ?></span>
+                  </a
                 >
               </li>
               <!-- ============================================================== -->
@@ -200,6 +190,16 @@ if (! isset($_SESSION['login'])){
               <li class="sidebar-item">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
+                  href="update_status.php"
+                  aria-expanded="false"
+                >
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                  <span class="hide-menu">Update Status</span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link waves-effect waves-dark sidebar-link"
                   href="basic-table.php"
                   aria-expanded="false"
                 >
@@ -207,13 +207,14 @@ if (! isset($_SESSION['login'])){
                   <span class="hide-menu">Data User</span>
                 </a>
               </li>
+              
               <li class="sidebar-item">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
                   href="../controller_logout.php"
                   aria-expanded="false"
                 >
-                <i class="far fa-sign-out" aria-hidden="true"></i>
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
                   <span class="hide-menu">Logout</span>
                 </a>
               </li>

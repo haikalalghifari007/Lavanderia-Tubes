@@ -1,22 +1,29 @@
 <?php
-  include '../koneksi.php';
-  session_start();
-  if (!isset($_SESSION['login'])){
-    header("Location: ../login.php");
-    $_SESSION['login'] = false;
-    header("Location: ../login.php");
-  }else{
-    $id = $_SESSION['id'];
-    $query = " select * from users where user_id = '$id' ";
-    $result = mysqli_query($koneksi, $query);
-    $user = mysqli_fetch_assoc($result);
-    $name = $user["name"];
-    $image = $user["image"];
-  }
+include '../koneksi.php';
+session_start();
+if (! isset($_SESSION['login'])){
+  $_SESSION['login'] = false;
+} else{
+  $id = $_SESSION['id'];
+  $query = " select * from users where user_id= '$id' ";
+  $result = mysqli_query($koneksi, $query);
+  $user = mysqli_fetch_assoc($result);
+  $name = $user["name"];
+  $image = $user["image"];
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $order_id = $_POST['order_id'];
+    $new_status = $_POST['new_status'];
+
+    $status = "UPDATE laundry_orders
+              SET order_status = '$new_status'
+              WHERE order_id = $order_id";
+
+    
+}
+
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
@@ -34,7 +41,7 @@
       content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework"
     />
     <meta name="robots" content="noindex,nofollow" />
-    <title>adminprofile</title>
+    <title>Userregister Melaundry</title>
     <link
       rel="canonical"
       href="https://www.wrappixel.com/templates/ample-admin-lite/"
@@ -60,7 +67,12 @@
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
-    
+    <!-- <div class="preloader">
+      <div class="lds-ripple">
+        <div class="lds-pos"></div>
+        <div class="lds-pos"></div>
+      </div>
+    </div> -->
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
@@ -82,7 +94,7 @@
             <!-- ============================================================== -->
             <!-- Logo -->
             <!-- ============================================================== -->
-            <a class="navbar-brand" href="dashboard.php">
+            <a class="navbar-brand" href="../index.php">
               <!-- Logo icon -->
               <b class="logo-icon">
                 <!-- Dark Logo icon -->
@@ -110,15 +122,6 @@
             id="navbarSupportedContent"
             data-navbarbg="skin5"
           >
-            <ul class="navbar-nav d-none d-md-block d-lg-none">
-              <li class="nav-item">
-                <a
-                  class="nav-toggler nav-link waves-effect waves-light text-white"
-                  href="javascript:void(0)"
-                  ><i class="ti-menu ti-close"></i
-                ></a>
-              </li>
-            </ul>
             <!-- ============================================================== -->
             <!-- Right side toggle and nav items -->
             <!-- ============================================================== -->
@@ -173,7 +176,7 @@
         <div class="scroll-sidebar">
           <!-- Sidebar navigation-->
           <nav class="sidebar-nav">
-          <ul id="sidebarnav">
+            <ul id="sidebarnav">
               <!-- User Profile-->
               <li class="sidebar-item pt-2">
                 <a
@@ -245,15 +248,9 @@
         <div class="page-breadcrumb bg-white">
           <div class="row align-items-center">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-              <h4 class="page-title">Profile page</h4>
+              <h4 class="page-title">Update Status</h4>
             </div>
-            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-              <div class="d-md-flex">
-                <ol class="breadcrumb ms-auto">
-                  <li><a href="#" class="fw-normal">Dashboard</a></li>
-                </ol>
-              </div>
-            </div>
+            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12"></div>
           </div>
           <!-- /.col-lg-12 -->
         </div>
@@ -267,115 +264,45 @@
           <!-- ============================================================== -->
           <!-- Start Page Content -->
           <!-- ============================================================== -->
-          <!-- Row -->
           <div class="row">
-            <!-- Column -->
-            <div class="col-lg-4 col-xlg-3 col-md-12">
+            <div class="col-sm-12">
               <div class="white-box">
-                <div class="user-bg">
-                  <img
-                    width="100%"
-                    alt="user"
-                    src="plugins/images/large/img1.jpg"
-                  />
-                  <div class="overlay-box">
-                    <div class="user-content">
-                      <a href="javascript:void(0)"
-                        ><img
-                          src="plugins/images/users/genu.jpg"
-                          class="thumb-lg img-circle"
-                          alt="img"
-                      /></a>
-                      <h4 class="text-white mt-2"><?php echo $name; ?></h4>
-                      <h5 class="text-white mt-2"><?php echo $email = $user["email"];; ?></h5>
+                <h3 class="box-title"></h3>
+                <div class="container-fluid">
+                        <div class="card shadow mb-4">
+                            <div class="card-body">
+                                <form method="post" action="">
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <label for="order_id">Order ID:</label>
+                                            <input type="text" class="form-control" name="order_id" required>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label for="new_status">New Status:</label>
+                                            <select class="form-control" name="new_status" required>
+                                                <option value="waiting">Waiting</option>
+                                                <option value="in_process">In Process</option>
+                                                <option value="ready_to_ship">Ready to Ship</option>
+                                                <option value="done">Done</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Update Status</button>
+                                </form>
+                                <?php if (mysqli_query($koneksi, $query)) {
+                                    // The update was successful
+                                    echo "Order status updated successfully.";
+                                } else {
+                                    // An error occurred during the update
+                                    echo "Error updating order status: " . mysqli_error($koneksi);
+                                }?>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                </div>
-                <div class="user-btm-box mt-5 d-md-flex">
-                  <div class="col-md-4 col-sm-4 text-center">
-                    <h1>258</h1>
-                  </div>
-                  <div class="col-md-4 col-sm-4 text-center">
-                    <h1>125</h1>
-                  </div>
-                  <div class="col-md-4 col-sm-4 text-center">
-                    <h1>556</h1>
-                  </div>
-                </div>
+                
               </div>
             </div>
-            <!-- Column -->
-            <!-- Column -->
-            <div class="col-lg-8 col-xlg-9 col-md-12">
-              <div class="card">
-                <div class="card-body">
-                  <form class="form-horizontal form-material">
-                    <div class="form-group mb-4">
-                      <label class="col-md-12 p-0">Full Name</label>
-                      <div class="col-md-12 border-bottom p-0">
-                        <input
-                          type="text"
-                          placeholder="Johnathan Doe"
-                          class="form-control p-0 border-0"
-                        />
-                      </div>
-                    </div>
-                    <div class="form-group mb-4">
-                      <label for="example-email" class="col-md-12 p-0"
-                        >Email</label
-                      >
-                      <div class="col-md-12 border-bottom p-0">
-                        <input
-                          type="email"
-                          placeholder="johnathan@admin.com"
-                          class="form-control p-0 border-0"
-                          name="example-email"
-                          id="example-email"
-                        />
-                      </div>
-                    </div>
-                    <div class="form-group mb-4">
-                      <label class="col-md-12 p-0">Password</label>
-                      <div class="col-md-12 border-bottom p-0">
-                        <input
-                          type="password"
-                          value="password"
-                          class="form-control p-0 border-0"
-                        />
-                      </div>
-                    </div>
-                    <div class="form-group mb-4">
-                      <label class="col-md-12 p-0">Phone No</label>
-                      <div class="col-md-12 border-bottom p-0">
-                        <input
-                          type="text"
-                          placeholder="123 456 7890"
-                          class="form-control p-0 border-0"
-                        />
-                      </div>
-                    </div>
-                    <div class="form-group mb-4">
-                      <label class="col-md-12 p-0">Message</label>
-                      <div class="col-md-12 border-bottom p-0">
-                        <textarea
-                          rows="5"
-                          class="form-control p-0 border-0"
-                        ></textarea>
-                      </div>
-                    </div>
-                    
-                    <div class="form-group mb-4">
-                      <div class="col-sm-12">
-                        <button class="btn btn-success">Update Profile</button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-            <!-- Column -->
           </div>
-          <!-- Row -->
           <!-- ============================================================== -->
           <!-- End PAge Content -->
           <!-- ============================================================== -->
@@ -394,9 +321,9 @@
         <!-- footer -->
         <!-- ============================================================== -->
         <footer class="footer text-center">
-          Designed By Lavanderia Distributed By Melaundry
+          Designed By Nedroid Distributed By Melaundry
           <a href="https://www.wrappixel.com/"
-            >© Lavanderia, All Right Reserved.</a
+            >© MeLaundry, All Right Reserved.</a
           >
         </footer>
         <!-- ============================================================== -->

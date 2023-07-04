@@ -26,9 +26,11 @@
     include '../koneksi.php';   
 
     // Mengambil data order per hari dari database
-    $query = "SELECT DATE(order_date) AS tanggal, COUNT(*) AS jumlah_order
-            FROM laundry_orders
-            GROUP BY tanggal";
+    $query = "SELECT MONTH(order_date) AS month, SUM(total_cost) AS total_cost
+    FROM laundry_orders
+    GROUP BY MONTH(order_date);
+    ;
+    ";
 
     $result = mysqli_query($koneksi, $query);
 
@@ -38,8 +40,8 @@
 
     // Mengisi array dengan data dari database
     while ($row = mysqli_fetch_assoc($result)) {
-        $dates[] = $row['tanggal'];
-        $orderCounts[] = $row['jumlah_order'];
+        $dates[] = $row['month'];
+        $orderCounts[] = $row['total_cost'];
     }
     ?>
 
@@ -53,7 +55,7 @@
         // Create chart
         var ctx = document.getElementById('tiga').getContext('2d');
         var chart = new Chart(ctx, {
-            type: 'line',
+            type: 'bar',
             data: {
                 labels: dates,
                 datasets: [{

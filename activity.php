@@ -9,6 +9,26 @@
     $result = mysqli_query($koneksi, $query);
     $user = mysqli_fetch_assoc($result);
   }
+
+
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Retrieve the dates from the form
+    $dari_tanggal = $_POST['dari_tanggal'];
+    $sampai_tanggal = $_POST['sampai_tanggal'];
+
+    // Construct the SQL cari_tanggal with the specified date range and sort by "Date & Time"
+    $cari_tanggal = "SELECT *
+                    FROM laundry_orders
+                    WHERE `order_date` BETWEEN '$dari_tanggal' AND '$sampai_tanggal'
+                    AND customer_id = '$id'
+                    ORDER BY `order_date` ASC";
+
+    $result = mysqli_query($koneksi, $cari_tanggal);
+}else{
+  $cari_tanggal = "SELECT * from laundry_orders where customer_id = $id;";
+
+    $result = mysqli_query($koneksi, $cari_tanggal);
+}
 ?>
 
 <!DOCTYPE html>
@@ -114,6 +134,27 @@
     <!-- Navbar End -->
     <H1 style="color:gold;">ORDER ACTIVITY</H1>
     <div class="form-group pull-right">
+    <div class="card shadow mb-4">
+            <div class="card-body">
+                <div id="filter_laporan" class="collapse show">
+                    <form method="post" id="form">
+                        <div class="form-row">
+                            <div class="col-sm-4">
+                                <input type="date" class="form-control" name="dari_tanggal" required="">
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="date" class="form-control" name="sampai_tanggal" required="">
+                            </div>
+                            <div class="col-sm-4">
+                                <button type="submit" id="btn-tampil" class="btn btn-dark">
+                                    <span class="text"><i class="fas fa-search fa-sm"></i> Tampilkan</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     <input type="text" class="search form-control" placeholder="what are you looking for?">
 </div>
 <span class="counter pull-right"></span>
@@ -134,21 +175,46 @@
                     $hasil = $koneksi->query($sql); //memproses query
     if ($hasil->num_rows > 0) {
        //menampilkan data setiap barisnya
-       while ($baris = $hasil->fetch_assoc()) {
-                       $price = $baris['total_weight'];
-                       $nota = $baris['nota'];
-                       $tanggal = $baris['order_date'];
+       while ($row = $result->fetch_assoc()) {
+                       $price = $row['total_weight'];
+                       $nota = $row['nota'];
+                       $tanggal = $row['order_date'];
                        echo "<tr><td>$tanggal</td>";
                        echo "<td>$price</td><td><a href='map.php'>$nota</a></td>" ?>
                     </tbody>
                     <?php          
        }	
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($result)): ?>
+        <!-- Display the sorted data -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Date & Time</th>
+                    <th>Price</th>
+                    <th>Invoice</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                    <tr>
+                        <td><?php echo $row['order_date']; ?></td>
+                        <td><?php echo $row['total_cost']; ?></td>
+                        <td><?php echo $row['nota']; ?></td>
+                    </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+    <?php endif; 
        echo "</table>";
     } else {
+      
             echo "Data tidak ditemukan";
     }
     $koneksi->close(); // menutup koneksi
 ?>
+
+
+
 <!-- Editable table -->
     <!-- history end -->
     

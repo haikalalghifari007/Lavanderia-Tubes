@@ -278,7 +278,7 @@
                         }elseif ($subscription_type == 'Royale Pass'){
                           echo "1 Bulan";
                         }else{
-                          echo "-";
+                          echo $subscription_type;
                         }?></h1>
                         <span class="text-primary fs-5">Akun Member</span>
                     </div>
