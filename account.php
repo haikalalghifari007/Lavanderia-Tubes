@@ -17,9 +17,48 @@
     $customer_id = $customer["customer_id"];
     $subscription_type = $customer["subscription_type"];
 
-    $jumlah = mysqli_query($koneksi, "SELECT COUNT(total_cost) AS jumlah FROM laundry_orders WHERE customer_id = '$customer_id'"); 
+    $jumlah = mysqli_query($koneksi, "SELECT COUNT(lo.total_cost) AS jumlah_selesai
+    FROM laundry_orders lo
+    JOIN customers c ON lo.customer_id = c.customer_id
+    WHERE c.customer_id = $customer_id
+      AND lo.order_status = 'done'"); 
     $row = mysqli_fetch_assoc($jumlah); 
-    $sum = $row['jumlah'];
+    $sum = $row['jumlah_selesai'];
+
+    $jumlah_minggu = mysqli_query($koneksi, "SELECT COUNT(lo.total_cost) AS jumlah_minggu
+    FROM laundry_orders lo
+    JOIN customers c ON lo.customer_id = c.customer_id
+    WHERE c.customer_id = $customer_id
+      AND lo.order_status = 'done'
+      AND YEARWEEK(lo.order_date) = YEARWEEK(CURRENT_DATE)
+      ");
+
+      $row_minggu = mysqli_fetch_assoc($jumlah_minggu);
+      $sum_minggu = $row_minggu['jumlah_minggu'];
+
+      if ($sum_minggu == 0) {
+          $sum_minggu = '0';
+      }
+
+
+    $jumlah_bulan = mysqli_query($koneksi, "SELECT COUNT(lo.total_cost) AS jumlah_bulan
+    FROM laundry_orders lo
+    JOIN customers c ON lo.customer_id = c.customer_id
+    WHERE c.customer_id = 6
+      AND lo.order_status = 'done'
+      AND YEAR(lo.order_date) = YEAR(CURRENT_DATE)
+      AND MONTH(lo.order_date) = MONTH(CURRENT_DATE);
+    
+      ");
+
+      $row_bulan = mysqli_fetch_assoc($jumlah_bulan);
+      $sum_bulan = $row_bulan['jumlah_bulan'];
+
+      if ($sum_bulan == 0) {
+          $sum_bulan = '0';
+      }
+
+
 
     $name = $user["name"];
     $image = $user["image"];
@@ -285,14 +324,14 @@
                 </div>
                 <div class="col-6 col-md-3 wow fadeIn" data-wow-delay="0.3s">
                     <div class="bg-white text-center p-3">
-                        <h1 class="mb-0"><?php echo $sum ?></h1>
-                        <span class="text-primary fs-5">Hari Ini</span>
+                        <h1 class="mb-0"><?php echo $sum_minggu ?></h1>
+                        <span class="text-primary fs-5">Minggu ini</span>
                     </div>
                 </div>
                 <div class="col-6 col-md-3 wow fadeIn" data-wow-delay="0.5s">
                     <div class="bg-white text-center p-3">
-                        <h1 class="mb-0"><?php echo $sum ?></h1>
-                        <span class="text-primary fs-5">Minggu ini</span>
+                        <h1 class="mb-0"><?php echo $sum_bulan ?></h1>
+                        <span class="text-primary fs-5">Bulan ini</span>
                     </div>
                 </div>
                 <div class="col-6 col-md-3 wow fadeIn" data-wow-delay="0.7s">

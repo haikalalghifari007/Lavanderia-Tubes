@@ -165,7 +165,7 @@
                   </div>
 
                 <div class="form-row">
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-2">
                   <form name="hasil">
 
 
@@ -216,37 +216,34 @@
         aria-expanded="false"
       >
         Pilihan Paket
-        <option selected disabled value="pilih paket">pilih paket</option>
+        <option selected disabled value="pilih paket">Pilih Paket</option>
         <option value="reguler">Reguler</option>
         <option value="kilat">Kilat</option>
         <option value="express">Express</option>
       </select>
     </form>
                   </div>
-                  <div class="form-group col-md-5">
-                    <label for="inputState">Pilihan Pewangi</label><br>
-                    <select style="background-color: white;" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="pewangi">
-                      Pilihan Paket
-                    </button>>
-                      <option>vanilla</option>
-                      <option>lemon</option>
-                      <option>cookies</option>
-                      <option>chocolate</option>
-                      <option>cinnamon</option>
-                      <option>lavender</option>
-                      <option>melon</option>
-                      <option>semangka</option>
-                      <option>oreo</option>
-                      <option>teh</option>
-                    </select>
+                  <div class="form-group col-md-3">
+                    <label for="inputState">Pilihan Pewangi</label>
+                    <?php 
+                    include 'rekom.php'; 
+                    ?>
+                    
                   
+                  </div>
+
+                  <div class="col-md-7">
+                    <p> </p>
+<br>
+                    <label for="inputState">*Pewangi teratas merupakan pewangi paling banyak dipilih</label>
+                    
                   </div>
                
                 </div>
                 <div class="form-group">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck" onclick="randomString();multiplyBy();">
-                    <label class="form-check-label" for="gridCheck" >
+                    <input class="form-check-input" type="checkbox" id="gridCheck" onclick="randomString();multiplyBy();" required>
+                    <label class="form-check-label" for="gridCheck"  >
                       Pastikan semua data telah terisi dengan benar, Apabila menggunakan metode cashless 
 lakukan pembayaran dalam 1x25 menit.
                     </label>

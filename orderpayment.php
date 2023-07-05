@@ -162,7 +162,7 @@ if(! $_SESSION['login']){
               <p>
                 Berikut adalah berbagai pilihan metode pembayaran untuk tagihan anda,Pembayaran anda akan dikonfirmasi paling lama 1x24 jam.
               </p>
-              <form class="pb-3" action="paymentgold_controller.php" method="post">
+              <form class="pb-3" action="./mid/proses.php" method="post">
                 <div class="d-flex flex-row pb-3">
                   <div class="d-flex align-items-center pe-2">
                     <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1"
@@ -217,7 +217,7 @@ if(! $_SESSION['login']){
                     <div class="ms-auto">089620150272</div>
                   </div>
                 </div>
-                <a  href="success.php" value="Lanjutkan Pembayaran" name="payment" class="btn btn-primary btn-block btn-lg">Lanjutkan Pembayaran</a>
+                <button  href="success.php" value="Lanjutkan Pembayaran" name="payment" class="btn btn-primary btn-block btn-lg">Lanjutkan Pembayaran</button>
               </form>         
             </div>
           </div>

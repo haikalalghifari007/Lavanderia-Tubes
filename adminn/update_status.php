@@ -294,7 +294,7 @@ if (! isset($_SESSION['login'])){
 
 <span class="counter pull-right"></span>
                 <div class="table-responsive">
-                <input type="text" class="search form-control" placeholder="Cari nota anda....">
+                <input type="text" class="search form-control" placeholder="Cari nota.....">
                   <table class="table no-wrap">
                     <thead>
                       <tr>

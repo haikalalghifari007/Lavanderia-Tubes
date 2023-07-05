@@ -473,7 +473,7 @@ include 'koneksi.php';
 
 
     <!-- Token Sale Start -->
-    <div class="container-xxl bg-light py-5 my-5">
+    <!-- <div class="container-xxl bg-light py-5 my-5">
         <div class="container py-5">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                 <h1 class="display-6">Total Cucian</h1>
@@ -515,7 +515,7 @@ include 'koneksi.php';
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Token Sale Start -->
 
 

@@ -162,6 +162,7 @@
   <thead>
     <tr>
       <th class="col-md-5 col-xs-5">Tanggal Order</th>
+      <th class="col-md-5 col-xs-5">Order Status</th>
       <th class="col-md-4 col-xs-4">Harga</th>
       <th class="col-md-3 col-xs-3">Nota</th>
     </tr>
@@ -177,9 +178,11 @@
        //menampilkan data setiap barisnya
        while ($row = $result->fetch_assoc()) {
                        $price = $row['total_cost'];
+                       $status = $row['order_status'];
                        $nota = $row['nota'];
                        $tanggal = $row['order_date'];
                        echo "<tr><td>$tanggal</td>";
+                       echo "<td>$status</td>";
                        echo "<td>$price</td>
                        <td><a href='map.php?nota=" . urlencode($nota) . "'>$nota</a></td>" ?>
                     </tbody>
