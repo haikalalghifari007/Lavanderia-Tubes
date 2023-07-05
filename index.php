@@ -103,7 +103,7 @@ include 'koneksi.php';
                 <div class='nav-item dropdown'>
                   <a href='#' class='nav-link dropdown-toggle' data-bs-toggle='dropdown'>Features</a>
                   <div class='dropdown-menu shadow-sm m-0'>
-                      <a href='menu.php' class='dropdown-item'>Menu</a>
+                      <a href='menu.php' class='dropdown-item'>Membership</a>
                       <a href='moreinfo.php' class='dropdown-item'>More info</a>";
               }
               else{
@@ -123,7 +123,7 @@ include 'koneksi.php';
                   <a href='#' class='nav-link dropdown-toggle' data-bs-toggle='dropdown'>Features</a>
                   <div class='dropdown-menu shadow-sm m-0'>
                       <a href='account.php' class='dropdown-item'>Account</a>
-                      <a href='menu.php' class='dropdown-item'>Menu</a>
+                      <a href='menu.php' class='dropdown-item'>Membership</a>
                       <a href='moreinfo.php' class='dropdown-item'>More info</a>";
                       
               }
@@ -696,7 +696,7 @@ include 'koneksi.php';
                     </div>
                     <div class="col-md-6 text-center text-md-end">
                         <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                        Designed By <a href="http://127.0.0.1:5500/index.php">Nedroid</a> Distributed By <a
+                        Designed By <a href="http://127.0.0.1:5500/index.php">Restu Ibu</a> Distributed By <a
                             href="https://themewagon.com">Lavanderia</a>
                     </div>
                 </div>
