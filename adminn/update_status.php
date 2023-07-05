@@ -253,10 +253,7 @@ if (! isset($_SESSION['login'])){
         <!-- Container fluid  -->
         <!-- ============================================================== -->
         <div class="container-fluid">
-          
-        <?php
-                  include 'tes.php';
-                  ?>
+
                   
                   
 
@@ -311,43 +308,44 @@ if (! isset($_SESSION['login'])){
                     </thead>
                     <tbody>
                     <?php
-                    $sql = "SELECT laundry_orders.*, users.name, users.phn_num
-                    FROM laundry_orders
-                    JOIN users ON laundry_orders.customer_id = users.user_id;
-                    "; 
-                    $hasil = $koneksi->query($sql); //memproses query
-                        if ($hasil->num_rows > 0) {
-                          //menampilkan data setiap barisnya
-                          while ($baris = $hasil->fetch_assoc()) {
-                                          $id = $baris['order_id'];
-                                          $name = $baris['name'];
-                                          $phone = $baris['phn_num'];
-                                          $address =$baris['alamat'];
-                                          $price = $baris['total_cost'];
-                                          $nota = $baris['nota'];
-                                          $pewangi = $baris['pewangi'];
-                                          $order_status = $baris['order_status'];
-                                          $order_date = $baris['order_date'];
-                                          echo "<tr><td>$nota</td>";
-                                          echo "<td>$name</td>
-                                          <td>$order_status</td>
-                                          <td>$phone</td>
-                                          <td>$address</td>
-                                          <td>$price</td>
-                                          <td>$order_date</td>
-                                          <td>$pewangi</td>
-                                          <td> 
-                                          <a href='ubahdepartemen.php?id=$id'>Edit</a> | "; ?>
-                                        <a href="hapusdepartemen.php?id=<?php echo $id; ?>" onClick="return confirm('Anda yakin akan mengapus data ini?');">Delete</a></td></tr>
-                                        </tbody>
-                                        <?php          
-                          }	
-                          echo "</table>";
-                        } else {
-                                echo "Data tidak ditemukan";
-                        } 
-                        // $koneksi->close(); // menutup koneksi
-                    ?>
+$sql = "SELECT laundry_orders.*, users.name, users.phn_num
+        FROM laundry_orders
+        JOIN users ON laundry_orders.customer_id = users.user_id;
+        "; 
+$hasil = $koneksi->query($sql); // memproses query
+if ($hasil->num_rows > 0) {
+    // menampilkan data setiap barisnya
+    while ($baris = $hasil->fetch_assoc()) {
+        $id = $baris['order_id'];
+        $name = $baris['name'];
+        $phone = $baris['phn_num'];
+        $address =$baris['alamat'];
+        $price = $baris['total_cost'];
+        $nota = $baris['nota'];
+        $pewangi = $baris['pewangi'];
+        $order_status = $baris['order_status'];
+        $order_date = $baris['order_date'];
+
+        echo "<tr><td>$nota</td>";
+        echo "<td>$name</td>";
+        echo "<td>$order_status</td>";
+        echo "<td>$phone</td>";
+        echo "<td>$address</td>";
+        echo "<td>$price</td>";
+        echo "<td>$order_date</td>";
+        echo "<td>$pewangi</td>";
+        echo "<td>
+              <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#updateOrder' data-id='$nota'>Edit</button>
+              </td></tr>";
+    }
+    echo "</table>";
+} else {
+    echo "Data tidak ditemukan";
+}
+
+// $koneksi->close(); // menutup koneksi
+?>
+
                 </div>
               </div>
             </div>
@@ -372,6 +370,59 @@ if (! isset($_SESSION['login'])){
         <!-- ============================================================== -->
         <!-- End footer -->
         <!-- ============================================================== -->
+
+        <!-- Back to Top -->
+        <div class="modal fade" id="updateOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+          <?php
+          if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $order_id = $_POST['order_id'];
+            $new_status = $_POST['new_status'];
+            
+            $status = "UPDATE laundry_orders
+                       SET order_status = '$new_status'
+                       WHERE nota = '$order_id'" ;
+            $result = mysqli_query($koneksi, $status);
+        
+            if ($result) {
+                echo "Order status updated successfully.";
+            } else {
+                echo "Error updating order status: " . mysqli_error($koneksi);
+            }
+        }
+        ?>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Order Status</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="update_status.php">
+                    <div class="form-group">
+                        <label for="new_status">New Status:</label>
+                        <select class="form-control" name="new_status" required>
+                            <option value="waiting">Waiting</option>
+                            <option value="in_process">In Process</option>
+                            <option value="ready_to_ship">Ready to Ship</option>
+                            <option value="done">Done</option>
+                        </select>
+                    </div>
+                    <input type="hidden" id="order_id" name="order_id" value="<?php echo $nota; ?>">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Update Status</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
       </div>
       <!-- ============================================================== -->
       <!-- End Page wrapper  -->
@@ -447,7 +498,20 @@ if (! isset($_SESSION['login'])){
           }
         });
       });
-    </script>
+
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#updateOrder').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var orderId = button.data('id'); // Extract order ID from data-id attribute
+            var modal = $(this);
+            modal.find('#order_id').val(orderId); // Set the value of the hidden input field
+        });
+    });
+</script>
 
   </body>
 </html>

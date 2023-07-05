@@ -1,6 +1,6 @@
 <?php
 include '../koneksi.php';
-
+session_start();
     $id = $_SESSION['id'];
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
