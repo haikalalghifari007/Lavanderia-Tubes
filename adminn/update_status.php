@@ -12,16 +12,6 @@ if (! isset($_SESSION['login'])){
   $image = $user["image"];
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $order_id = $_POST['order_id'];
-    $new_status = $_POST['new_status'];
-
-    $status = "UPDATE laundry_orders
-              SET order_status = '$new_status'
-              WHERE order_id = $order_id";
-
-    
-}
 
 ?>
 
@@ -197,6 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   <i class="fa fa-user" aria-hidden="true"></i>
                   <span class="hide-menu">Profile</span>
                 </a>
+
               </li>
               <li class="sidebar-item">
                 <a
@@ -242,6 +233,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <!-- Page wrapper  -->
       <!-- ============================================================== -->
       <div class="page-wrapper">
+      
         <!-- ============================================================== -->
         <!-- Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
@@ -261,6 +253,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <!-- Container fluid  -->
         <!-- ============================================================== -->
         <div class="container-fluid">
+          
+        <?php
+                  include 'tes.php';
+                  ?>
+                  
+                  
+
           <!-- ============================================================== -->
           <!-- Start Page Content -->
           <!-- ============================================================== -->
@@ -269,57 +268,101 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <div class="white-box">
                 <h3 class="box-title"></h3>
                 <div class="container-fluid">
-                        <div class="card shadow mb-4">
-                            <div class="card-body">
-                                <form method="post" action="">
-                                    <div class="form-row">
-                                        <div class="col-md-12">
-                                            <label for="order_id">Order ID:</label>
-                                            <input type="text" class="form-control" name="order_id" required>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <label for="new_status">New Status:</label>
-                                            <select class="form-control" name="new_status" required>
-                                                <option value="waiting">Waiting</option>
-                                                <option value="in_process">In Process</option>
-                                                <option value="ready_to_ship">Ready to Ship</option>
-                                                <option value="done">Done</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Update Status</button>
-                                </form>
-                                <?php if (mysqli_query($koneksi, $query)) {
-                                    // The update was successful
-                                    echo "Order status updated successfully.";
-                                } else {
-                                    // An error occurred during the update
-                                    echo "Error updating order status: " . mysqli_error($koneksi);
-                                }?>
-                            </div>
-                        </div>
+                <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12">
+              <div class="white-box">
+                <div class="d-md-flex mb-3">
+                  <h3 class="box-title mb-0">Order List</h3>
+                  <div class="col-md-3 col-sm-4 col-xs-6 ms-auto">
+                    <select class="form-select shadow-none row border-top">
+                      <option>January 2022</option>
+                      <option>February 2022</option>
+                      <option>March 2022</option>
+                      <option>April 2022</option>
+                      <option>May 2022</option>
+                      <option>June 2022</option>
+                      <option>July 2022</option>
+                      <option>August 2022</option>
+                      <option>September 2022</option>
+                      <option>October 2022</option>
+                      <option>November 2022</option>
+                      <option>December 2021</option>
+                    </select>
+                  </div>
+                  
+                </div>
+
+<span class="counter pull-right"></span>
+                <div class="table-responsive">
+                <input type="text" class="search form-control" placeholder="Cari nota anda....">
+                  <table class="table no-wrap">
+                    <thead>
+                      <tr>
+                        <th class="border-top-0">Invoice</th>
+                        <th class="border-top-0">Name</th>
+                        <th class="border-top-0">order_status</th>
+                        <th class="border-top-0">Phone Number</th>
+                        <th class="border-top-0">Pickup Address</th>
+                        <th class="border-top-0">Price</th>
+                        <th class="border-top-0">Date Order</th>
+                        <th class="border-top-0">Pewangi</th>
+                        <th class="border-top-0">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $sql = "SELECT laundry_orders.*, users.name, users.phn_num
+                    FROM laundry_orders
+                    JOIN users ON laundry_orders.customer_id = users.user_id;
+                    "; 
+                    $hasil = $koneksi->query($sql); //memproses query
+                        if ($hasil->num_rows > 0) {
+                          //menampilkan data setiap barisnya
+                          while ($baris = $hasil->fetch_assoc()) {
+                                          $id = $baris['order_id'];
+                                          $name = $baris['name'];
+                                          $phone = $baris['phn_num'];
+                                          $address =$baris['alamat'];
+                                          $price = $baris['total_cost'];
+                                          $nota = $baris['nota'];
+                                          $pewangi = $baris['pewangi'];
+                                          $order_status = $baris['order_status'];
+                                          $order_date = $baris['order_date'];
+                                          echo "<tr><td>$nota</td>";
+                                          echo "<td>$name</td>
+                                          <td>$order_status</td>
+                                          <td>$phone</td>
+                                          <td>$address</td>
+                                          <td>$price</td>
+                                          <td>$order_date</td>
+                                          <td>$pewangi</td>
+                                          <td> 
+                                          <a href='ubahdepartemen.php?id=$id'>Edit</a> | "; ?>
+                                        <a href="hapusdepartemen.php?id=<?php echo $id; ?>" onClick="return confirm('Anda yakin akan mengapus data ini?');">Delete</a></td></tr>
+                                        </tbody>
+                                        <?php          
+                          }	
+                          echo "</table>";
+                        } else {
+                                echo "Data tidak ditemukan";
+                        } 
+                        // $koneksi->close(); // menutup koneksi
+                    ?>
+                </div>
+              </div>
+            </div>
+          </div>
+                        
+                        
                     </div>
+                    
                 
               </div>
             </div>
           </div>
-          <!-- ============================================================== -->
-          <!-- End PAge Content -->
-          <!-- ============================================================== -->
-          <!-- ============================================================== -->
-          <!-- Right sidebar -->
-          <!-- ============================================================== -->
-          <!-- .right-sidebar -->
-          <!-- ============================================================== -->
-          <!-- End Right sidebar -->
-          <!-- ============================================================== -->
+          
         </div>
-        <!-- ============================================================== -->
-        <!-- End Container fluid  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- footer -->
-        <!-- ============================================================== -->
+        
         <footer class="footer text-center">
           Designed By Nedroid Distributed By Melaundry
           <a href="https://www.wrappixel.com/"
@@ -350,5 +393,61 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $(".search").keyup(function() {
+          var searchTerm = $(this).val().toLowerCase();
+          $(".table tbody tr").each(function() {
+            var lineText = $(this).text().toLowerCase();
+            if (lineText.includes(searchTerm)) {
+              $(this).show();
+            } else {
+              $(this).hide();
+            }
+          });
+        });
+      });
+
+      $(document).ready(function() {
+        $(".search").keyup(function() {
+          var searchTerm = $(".search").val();
+          var listItem = $(".results tbody").children("tr");
+          var searchSplit = searchTerm.replace(/ /g, "'):containsi('");
+
+          $.extend($.expr[":"], {
+            containsi: function(elem, i, match, array) {
+              return (
+                (elem.textContent || elem.innerText || "")
+                  .toLowerCase()
+                  .indexOf((match[3] || "").toLowerCase()) >= 0
+              );
+            },
+          });
+
+          $(".results tbody tr")
+            .not(":containsi('" + searchSplit + "')")
+            .each(function(e) {
+              $(this).attr("visible", "false");
+            });
+
+          $(".results tbody tr:containsi('" + searchSplit + "')").each(function(e) {
+            $(this).attr("visible", "true");
+          });
+
+          var jobCount = $(".results tbody tr[visible='true']").length;
+          $(".counter").text(jobCount + " item");
+
+          if (jobCount == "0") {
+            $(".no-result").show();
+          } else {
+            $(".no-result").hide();
+          }
+        });
+      });
+    </script>
+
   </body>
 </html>

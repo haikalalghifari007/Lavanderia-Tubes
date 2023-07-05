@@ -5,7 +5,7 @@
     $payment_status = 'pending';
     $berat = $_POST['berat'];
     $price = $_POST['price'];
-    $pickup = $_POST['tanggal'];
+    // $pickup = $_POST['tanggal'];
     $delivery_date = $_POST['tanggal'];
     $nota = $_POST['nota'];
     $address = $_POST['address'];
@@ -26,7 +26,7 @@
         payment_status, 
         total_weight, 
         total_cost, 
-        pickup_date, 
+        -- pickup_date, 
         delivery_date, 
         nota, 
         alamat, 
@@ -36,8 +36,7 @@
         '".$order."', 
         '".$payment_status."', 
         '".$berat."', 
-        '".$price."', 
-        '".$pickup."', 
+        '".$price."',  
         '".$delivery_date."', 
         '".$nota."', 
         '".$address."', 

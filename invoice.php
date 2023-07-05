@@ -16,7 +16,7 @@ if(! $_SESSION['login']){
 
 <head>
     <meta charset="utf-8" />
-    <title>MeLaundry By Nedroid</title>
+    <title>Lavanderia By Nedroid</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="keywords" />
     <meta content="" name="description" />
@@ -133,7 +133,7 @@ if(! $_SESSION['login']){
         <div class="col-md-12">
           <div class="text-center">
             <i class="fab fa-mdb fa-4x ms-0" style="color:#5d9fc5 ;"></i>
-            <p class="pt-0">Melaundry</p>
+            <p class="pt-0">Lavanderia</p>
           </div>
 
         </div>
@@ -143,8 +143,8 @@ if(! $_SESSION['login']){
           <div class="col-xl-8">
             <ul class="list-unstyled">
               <li class="text-muted">To: <span style="color:#5d9fc5 ;"><?php echo $user['name'] ?></span></li>
-              <li class="text-muted"><?php echo $user['name'] ?></li>
-              <li class="text-muted"><?php echo $user['name'] ?></li>
+              <li class="text-muted"><?php echo $user['address'] ?></li>
+              <li class="text-muted"><?php echo $user['email'] ?></li>
               <li class="text-muted"><i class="fas fa-phone"></i> <?php echo $user['phn_num'] ?></li>
             </ul>
           </div>
@@ -156,7 +156,7 @@ if(! $_SESSION['login']){
             
               <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
                   class="me-1 fw-bold">Status:</span><span class="badge badge-pill badge-success">
-                  succes</span></li>
+                  success</span></li>
             </ul>
           </div>
         </div>
@@ -166,10 +166,11 @@ if(! $_SESSION['login']){
             <thead style="background-color:#84B0CA ;" class="text-white">
               <tr>
                 <th class="border-top-0">Invoice</th>
-                <th class="border-top-0">Phone Number</th>
-                <th class="border-top-0">Pickup Address</th>
-                <th class="border-top-0">Price</th>
-                <th class="border-top-0">Date Order</th>
+                <th class="border-top-0">Nomor Handphone</th>
+                <th class="border-top-0">Alamat</th>
+                <th class="border-top-0">Status Order</th>
+                <th class="border-top-0">Harga</th>
+                <th class="border-top-0">Tanggal Order</th>
               </tr>
             </thead>
             <tbody>
@@ -181,33 +182,35 @@ if(! $_SESSION['login']){
                     FROM laundry_orders
                     JOIN users
                     ON laundry_orders.customer_id = users.user_id
-                    WHERE laundry_orders.customer_id = 5
+                    WHERE laundry_orders.customer_id = $id
                     "; 
                     $hasil = $koneksi->query($sql); //memproses query
-    if ($hasil->num_rows > 0) {
-       //menampilkan data setiap barisnya
-       while ($baris = $hasil->fetch_assoc()) {
-                       $id = $baris['customer_id'];
-                       $phone = $baris['phn_num'];
-                       $address =$baris['address'];
-                       $price = $baris['total_cost'];
-                       $nota = $baris['nota'];
-                       $tanggal = $baris['order_date'];
-                       echo "<tr><td>$nota</td>";
-                       echo "<td>$phone</td><td>$address</td>><td>$price</td><td>$tanggal</td>" ?>
-                    </tbody>
-                    <?php          
-       }	
-       echo "</table>";
-    } else {
-            echo "Data tidak ditemukan";
-    }
-    $koneksi->close(); // menutup koneksi
-?>
+                    if ($hasil->num_rows > 0) {
+                      //menampilkan data setiap barisnya
+                      while ($baris = $hasil->fetch_assoc()) {
+                                      $id = $baris['customer_id'];
+                                      $phone = $baris['phn_num'];
+                                      $address =$baris['alamat'];
+                                      $status =$baris['order_status'];
+                                      $price = $baris['total_cost'];
+                                      $nota = $baris['nota'];
+                                      $tanggal = $baris['order_date'];
+                                      echo "<tr><td>$nota</td>";
+                                      echo "<td>$phone</td><td>$address</td>><td>$status</td><td>$price</td><td>$tanggal</td>" ?>
+                                    </tbody>
+                                    <?php          
+                      }	
+                      echo "</table>";
+                    } else {
+                            echo "Data tidak ditemukan";
+                    }
+                    $koneksi->close(); // menutup koneksi
+                ?>
         </div>
+        
         <div class="row">
           <div class="col-xl-8">
-            <p class="ms-3">Add additional notes and payment information</p>
+            <!-- <p class="ms-3">Add additional notes and payment information</p> -->
 
           </div>
           <div class="col-xl-3">
@@ -243,7 +246,7 @@ if(! $_SESSION['login']){
                     <h1 class="text-primary mb-4"><img class="img-fluid me-2" src="Logo.png" alt=""
 
                             style="width: auto;"></h1>
-                    <span>Serahkan segala masalah cucian anda kepada kami, karena MeLaundry adalah platform Laundry yang aman dan Praktis.</span>
+                    <span>Serahkan segala masalah cucian anda kepada kami, karena Lavanderia adalah platform Laundry yang aman dan Praktis.</span>
                 </div>
                 <div class="col-md-6">
                     <h5 class="mb-4">Daftar Sekarang</h5>
@@ -259,10 +262,10 @@ if(! $_SESSION['login']){
                     <h5 class="mb-4">Hubungi Kami</h5>
                     <p><i class="fa fa-map-marker-alt me-3"></i>Kabupaten Sleman, DIY</p>
                     <p><i class="fa fa-phone-alt me-3"></i>+62 812-3456-789</p>
-                    <p><i class="fa fa-envelope me-3"></i>cs@melaundry.id</p>
+                    <p><i class="fa fa-envelope me-3"></i>cs@Lavanderia.id</p>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h5 class="mb-4">MeLaundry</h5>
+                    <h5 class="mb-4">Lavanderia</h5>
                     <a class="btn btn-link" href="index.php">Home</a>
                     <a class="btn btn-link" href="order.php">Order</a>
                     <a class="btn btn-link" href="activity.php">Activity</a>
@@ -289,12 +292,12 @@ if(! $_SESSION['login']){
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a href="#">MeLaundry</a>, All Right Reserved.
+                        &copy; <a href="#">Lavanderia</a>, All Right Reserved.
                     </div>
                     <div class="col-md-6 text-center text-md-end">
                         <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
                         Designed By <a href="http://127.0.0.1:5500/index.php">Nedroid</a> Distributed By <a
-                            href="https://themewagon.com">Melaundry</a>
+                            href="https://themewagon.com">Lavanderia</a>
                     </div>
                 </div>
             </div>

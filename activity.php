@@ -155,15 +155,15 @@
                 </div>
             </div>
         </div>
-    <input type="text" class="search form-control" placeholder="what are you looking for?">
+    <input type="text" class="search form-control" placeholder="Cari nota anda....">
 </div>
 <span class="counter pull-right"></span>
 <table class="table table-hover table-bordered results">
   <thead>
     <tr>
-      <th class="col-md-5 col-xs-5">Date & Time</th>
-      <th class="col-md-4 col-xs-4">Price</th>
-      <th class="col-md-3 col-xs-3">Invoice</th>
+      <th class="col-md-5 col-xs-5">Tanggal Order</th>
+      <th class="col-md-4 col-xs-4">Harga</th>
+      <th class="col-md-3 col-xs-3">Nota</th>
     </tr>
     <tr class="warning no-result">
       <td colspan="4"><i class="fa fa-warning"></i> No result</td>
@@ -176,35 +176,16 @@
     if ($hasil->num_rows > 0) {
        //menampilkan data setiap barisnya
        while ($row = $result->fetch_assoc()) {
-                       $price = $row['total_weight'];
+                       $price = $row['total_cost'];
                        $nota = $row['nota'];
                        $tanggal = $row['order_date'];
                        echo "<tr><td>$tanggal</td>";
-                       echo "<td>$price</td><td><a href='map.php'>$nota</a></td>" ?>
+                       echo "<td>$price</td>
+                       <td><a href='map.php?nota=" . urlencode($nota) . "'>$nota</a></td>" ?>
                     </tbody>
                     <?php          
        }	
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($result)): ?>
-        <!-- Display the sorted data -->
-        <table>
-            <thead>
-                <tr>
-                    <th>Date & Time</th>
-                    <th>Price</th>
-                    <th>Invoice</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($row = mysqli_fetch_assoc($result)): ?>
-                    <tr>
-                        <td><?php echo $row['order_date']; ?></td>
-                        <td><?php echo $row['total_cost']; ?></td>
-                        <td><?php echo $row['nota']; ?></td>
-                    </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
-    <?php endif; 
+        
        echo "</table>";
     } else {
       

@@ -4,13 +4,14 @@
   if (!$_SESSION['login']){
     $_SESSION['login'] = false;
   }else{
+    
+    $nota_baru = $_GET['nota'];
+
     $id = $_SESSION['id'];
     $_SESSION['login'] = true;
-    $query = "SELECT MAX(order_status) AS nomor_status
+    $query = "SELECT order_status AS nomor_status, nota
     FROM laundry_orders
-    WHERE customer_id = 6
-    ORDER BY order_status DESC
-    LIMIT 1;
+    WHERE customer_id = $id AND nota = '$nota_baru';
     ";
     $result = mysqli_query($koneksi, $query);
     $user = mysqli_fetch_assoc($result);
@@ -35,7 +36,7 @@
     <meta content="" name="description" />
 
     <!-- Favicon -->
-    <link rel="stylesheet" href="map.css">
+    <link rel="stylesheet" href="mapdua.css">
     <link href="Logo.png" rel="icon" />
     <!-- Bootstrap CSS -->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css'>
@@ -74,7 +75,7 @@
       <link rel="stylesheet" href="stylepopup.css">
       <!-- Demo CSS -->
       <link rel="stylesheet" href="css/demo.css">
-      <link rel="stylesheet" href="map.css">
+      <link rel="stylesheet" href="mapdua.css">
     
   </head>
 
@@ -180,15 +181,37 @@
                   </div>
                   
       
-
-                  
-
                   <ul id="progressbar-2" class="d-flex justify-content-between mx-0 mt-0 mb-5 px-0 pt-0 pb-2">
-                    <li class="step0 active text-center" id="step1"></li>
-                    <li class="step0 active text-center" id="step2"></li>
-                    <li class="step0 text-muted text-center" id="step3"></li>
-                    <li class="step0 text-muted text-end" id="step4"></li>
-                  </ul>
+                    <?php 
+                    if ($status === "waiting") {
+                        echo '<li class="step0 active text-center " id="step1"></li>
+                              <li class="step0  text-center" id="step2"></li>
+                              <li class="step0  text-center" id="step3"></li>
+                              <li class="step0 text-muted text-end" id="step4"></li>';
+                    } elseif ($status === "in_process") {
+                        echo '<li class="step0 active text-center" id="step1"></li>
+                        <li class="step0 active text-center" id="step2"></li>
+                        <li class="step0  text-center" id="step3"></li>
+                        <li class="step0  text-end" id="step4"></li>';
+                    } elseif ($status === "ready_to_ship") {
+                        echo '<li class="step0 active text-center" id="step1"></li>
+                              <li class="step0 active text-center" id="step2"></li>
+                              <li class="step0 active text-center" id="step3"></li>
+                              <li class="step0  text-end" id="step4"></li>';
+                    } elseif ($status === "done") {
+                        echo '<li class="step0 active text-center" id="step1"></li>
+                              <li class="step0 active text-center" id="step2"></li>
+                              <li class="step0 active text-center" id="step3"></li>
+                              <li class="step0 active text-end" id="step4"></li>';
+                    } else{
+                      echo '<li class="step0  text-center" id="step1"></li>
+                              <li class="step0  text-center" id="step2"></li>
+                              <li class="step0  text-center" id="step3"></li>
+                              <li class="step0  text-end" id="step4"></li>';
+                    }
+                    ?>
+                </ul>
+
 
                         
       
@@ -196,36 +219,24 @@
                     <div class="d-lg-flex align-items-center">
                       <i class="fas fa-clipboard-list fa-3x me-lg-4 mb-3 mb-lg-0"></i>
                       <div>
-                        <p class="fw-bold mb-1">Order <?php 
-                  
-                  if ($status === "1") {
-                    echo "111111111111111111111111111";
-                } elseif ($status === "2") {
-                    echo "2222222222222222222";
-                } elseif ($status === "3") {
-                    echo "33333333333333333333333";
-                } elseif ($status === "4") {
-                    echo "4444444444444444444444444444";
-                }
-                
-
-                  ?></p>
-                        <p class="fw-bold mb-0">Processed</p>
+                        <p class="fw-bold mb-1">Menunggu  
+                          </p>
+                        <p class="fw-bold mb-0">Konfirmasi</p>
                         
                       </div>
                     </div>
                     <div class="d-lg-flex align-items-center">
                       <i class="fas fa-box-open fa-3x me-lg-4 mb-3 mb-lg-0"></i>
                       <div>
-                        <p class="fw-bold mb-1">Order</p>
-                        <p class="fw-bold mb-0">Shipped</p>
+                        <p class="fw-bold mb-1">On</p>
+                        <p class="fw-bold mb-0">Process</p>
                       </div>
                     </div>
                     <div class="d-lg-flex align-items-center">
                       <i class="fas fa-shipping-fast fa-3x me-lg-4 mb-3 mb-lg-0"></i>
                       <div>
                         <p class="fw-bold mb-1">Order</p>
-                        <p class="fw-bold mb-0">En Route</p>
+                        <p class="fw-bold mb-0">Shipped</p>
                       </div>
                     </div>
                     <div class="d-lg-flex align-items-center">

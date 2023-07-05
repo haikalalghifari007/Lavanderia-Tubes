@@ -202,7 +202,7 @@ include 'koneksi.php';
     </div>
     <!-- Header End -->
     <!-- voucer -->
-    <div class="containerr">
+    <!-- <div class="containerr">
         <div class="container1">
             <div class="front">
                 <img src="voucher winter.png">
@@ -231,7 +231,7 @@ include 'koneksi.php';
         </div>
 
         
-    </div>
+    </div> -->
     <!-- voucher -->
 
     <!-- About Start -->
@@ -259,7 +259,7 @@ include 'koneksi.php';
     <!-- About End -->
 
     <!-- Facts Start -->
-    <div class="container-xxl bg-light py-5 my-5">
+    <!-- <div class="container-xxl bg-light py-5 my-5">
       <div class="container py-5">
         <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
             <h1 class="display-6">Total Gerai</h1><br>   
@@ -291,7 +291,7 @@ include 'koneksi.php';
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- Facts End -->
 
 
