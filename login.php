@@ -99,7 +99,7 @@ session_start();
           <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Features</a>
             <div class="dropdown-menu shadow-sm m-0">
-                <a href="menu.php" class="dropdown-item">Menu</a>
+                <a href="menu.php" class="dropdown-item">Membership</a>
                 <a href="moreinfo.php" class="dropdown-item">More info</a>
             </div>
         </div>
@@ -183,7 +183,7 @@ session_start();
                     <h1 class="text-primary mb-4"><img class="img-fluid me-2" src="Logo.png" alt=""
 
                             style="width: auto;"></h1>
-                    <span>Serahkan segala masalah cucian anda kepada kami, karena MeLaundry adalah platform Laundry yang aman dan Praktis.</span>
+                    <span>Serahkan segala masalah cucian anda kepada kami, karena Lavanderia adalah platform Laundry yang aman dan Praktis.</span>
                 </div>
                 <div class="col-md-6">
                     <h5 class="mb-4">Daftar Sekarang</h5>
@@ -199,10 +199,10 @@ session_start();
                     <h5 class="mb-4">Hubungi Kami</h5>
                     <p><i class="fa fa-map-marker-alt me-3"></i>Kabupaten Sleman, DIY</p>
                     <p><i class="fa fa-phone-alt me-3"></i>+62 812-3456-789</p>
-                    <p><i class="fa fa-envelope me-3"></i>cs@melaundry.id</p>
+                    <p><i class="fa fa-envelope me-3"></i>cs@Lavanderia.id</p>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h5 class="mb-4">MeLaundry</h5>
+                    <h5 class="mb-4">Lavanderia</h5>
                     
                     <?php
 
@@ -242,12 +242,12 @@ session_start();
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a href="#">MeLaundry</a>, All Right Reserved.
+                        &copy; <a href="#">Lavanderia</a>, All Right Reserved.
                     </div>
                     <div class="col-md-6 text-center text-md-end">
                         <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                        Designed By <a href="http://127.0.0.1:5500/index.php">Nedroid</a> Distributed By <a
-                            href="https://themewagon.com">Melaundry</a>
+                        Designed By <a href="http://127.0.0.1:5500/index.php">Restu Ibu</a> Distributed By <a
+                            href="https://themewagon.com">Lavanderia</a>
                     </div>
                 </div>
             </div>

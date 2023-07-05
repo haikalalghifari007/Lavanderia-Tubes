@@ -17,7 +17,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>MeLaundry By Nedroid</title>
+    <title>Lavanderia By Restu Ibu</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="keywords" />
     <meta content="" name="description" />
@@ -217,7 +217,7 @@
                                 <div class="accordion-body">
                                     Untuk informasi lebih lanjut hubungi kami: <br>
                                      WA:082230395538 <br>
-                                     Email:cs@melaundry.id
+                                     Email:cs@Lavanderia.id
                                 </div>
                             </div>
                         </div>
@@ -231,7 +231,7 @@
                             <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                All the information on this website - melaundry.site - is published in good faith and for general information purpose only. Melaundry does not make any warranties about the completeness, reliability and accuracy of this information. Any action you take upon the information you find on this website (Melaundry), is strictly at your own risk. Melaundry will not be liable for any losses and/or damages in connection with the use of our website. Our Disclaimer was generated with the help of the .</p>
+                                All the information on this website - Lavanderia.site - is published in good faith and for general information purpose only. Lavanderia does not make any warranties about the completeness, reliability and accuracy of this information. Any action you take upon the information you find on this website (Lavanderia), is strictly at your own risk. Lavanderia will not be liable for any losses and/or damages in connection with the use of our website. Our Disclaimer was generated with the help of the .</p>
                                 From our website, you can visit other websites by following hyperlinks to such external sites. While we strive to provide only quality links to useful and ethical websites, we have no control over the content and nature of these sites. These links to other websites do not imply a recommendation for all the content found on these sites. Site owners and content may change without notice and may occur before we have the opportunity to remove a link which may have gone 'bad'.</p>
                                 Please be also aware that when you leave our website, other sites may have different privacy policies and terms which are beyond our control. Please be sure to check the Privacy Policies of these sites as well as their "Terms of Service" before engaging in any business or uploading any information.
                                 Consent
@@ -256,7 +256,7 @@
                     <h1 class="text-primary mb-4"><img class="img-fluid me-2" src="Logo.png" alt=""
 
                             style="width: auto;"></h1>
-                    <span>Serahkan segala masalah cucian anda kepada kami, karena MeLaundry adalah platform Laundry yang aman dan Praktis.</span>
+                    <span>Serahkan segala masalah cucian anda kepada kami, karena Lavanderia adalah platform Laundry yang aman dan Praktis.</span>
                 </div>
                 <div class="col-md-6">
                     <h5 class="mb-4">Daftar Sekarang</h5>
@@ -272,10 +272,10 @@
                     <h5 class="mb-4">Hubungi Kami</h5>
                     <p><i class="fa fa-map-marker-alt me-3"></i>Kabupaten Sleman, DIY</p>
                     <p><i class="fa fa-phone-alt me-3"></i>+62 812-3456-789</p>
-                    <p><i class="fa fa-envelope me-3"></i>cs@melaundry.id</p>
+                    <p><i class="fa fa-envelope me-3"></i>cs@Lavanderia.id</p>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h5 class="mb-4">MeLaundry</h5><?php
+                    <h5 class="mb-4">Lavanderia</h5><?php
 
 if(! $_SESSION['login']){ //IKIII
   echo "<a class='btn btn-link' href='index.php'>Home</a>
@@ -313,12 +313,12 @@ else{
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a href="#">MeLaundry</a>, All Right Reserved.
+                        &copy; <a href="#">Lavanderia</a>, All Right Reserved.
                     </div>
                     <div class="col-md-6 text-center text-md-end">
                         <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                        Designed By <a href="http://127.0.0.1:5500/index.php">Nedroid</a> Distributed By <a
-                            href="https://themewagon.com">Melaundry</a>
+                        Designed By <a href="http://127.0.0.1:5500/index.php">Restu Ibu</a> Distributed By <a
+                            href="https://themewagon.com">Lavanderia</a>
                     </div>
                 </div>
             </div>
