@@ -49,7 +49,8 @@ if ($hasil->num_rows > 0) {
     }
     
     echo "
-    <input type='submit' value='Simpan' name='submit'><input type='reset' value='Batal'></form>";
+    <input type='submit' value='Simpan' name='submit'>
+    <input type='reset' value='Batal'></form>";
 $koneksi->close(); // menutup koneksi
 
 
