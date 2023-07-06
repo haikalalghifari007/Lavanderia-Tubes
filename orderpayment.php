@@ -109,12 +109,12 @@ if(! $_SESSION['login']){
         <div class="navbar-nav ms-auto py-4 py-lg-0">
           <a href="index.php" class="nav-item nav-link ">Home</a>
           <a href="order.php" class="nav-item nav-link ">Order</a>
-          <a href="activity.php" class="nav-item nav-link ">Activity</a>
+          <a href="activity.php" class="nav-item nav-link ">History</a>
           <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" >Features</a>
             <div class="dropdown-menu shadow-sm m-0">
                 <a href="account.php" class="dropdown-item">Account</a>
-                <a href="menu.php" class="dropdown-item">Menu</a>
+                <a href="menu.php" class="dropdown-item">Membership</a>
                 <a href="moreinfo.php" class="dropdown-item">More info</a>
             </div>
         </div>
@@ -162,7 +162,7 @@ if(! $_SESSION['login']){
               <p>
                 Berikut adalah berbagai pilihan metode pembayaran untuk tagihan anda,Pembayaran anda akan dikonfirmasi paling lama 1x24 jam.
               </p>
-              <form class="pb-3" action="./mid/proses.php" method="post">
+              <form class="pb-3" action="success.php" method="post">
                 <div class="d-flex flex-row pb-3">
                   <div class="d-flex align-items-center pe-2">
                     <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1"
@@ -289,7 +289,7 @@ if(! $_SESSION['login']){
                     <h5 class="mb-4">Lavanderia</h5>
                     <a class="btn btn-link" href="index.php">Home</a>
                     <a class="btn btn-link" href="order.php">Order</a>
-                    <a class="btn btn-link" href="activity.php">Activity</a>
+                    <a class="btn btn-link" href="activity.php">History</a>
                     <a class="btn btn-link" href="account.php">Account</a>
                 </div>
                 <div class="col-lg-3 col-md-6">

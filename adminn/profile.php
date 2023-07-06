@@ -11,7 +11,10 @@
     $result = mysqli_query($koneksi, $query);
     $user = mysqli_fetch_assoc($result);
     $name = $user["name"];
+    $email = $user["email"];
+    $phn = $user["phn_num"];
     $image = $user["image"];
+    $address = $user["address"];
   }
 ?>
 
@@ -282,25 +285,19 @@
                     <div class="user-content">
                       <a href="javascript:void(0)"
                         ><img
-                          src="plugins/images/users/genu.jpg"
+                          src="../img/<?php echo $image; ?>"
                           class="thumb-lg img-circle"
                           alt="img"
                       /></a>
                       <h4 class="text-white mt-2"><?php echo $name; ?></h4>
-                      <h5 class="text-white mt-2"><?php echo $email = $user["email"];; ?></h5>
+                      <h5 class="text-white mt-2"><?php echo $email; ?></h5>
                     </div>
                   </div>
                 </div>
                 <div class="user-btm-box mt-5 d-md-flex">
-                  <div class="col-md-4 col-sm-4 text-center">
-                    <h1>258</h1>
-                  </div>
-                  <div class="col-md-4 col-sm-4 text-center">
-                    <h1>125</h1>
-                  </div>
-                  <div class="col-md-4 col-sm-4 text-center">
-                    <h1>556</h1>
-                  </div>
+                 
+                    <h1><?php echo $phn; ?></h1>
+               
                 </div>
               </div>
             </div>
@@ -315,7 +312,7 @@
                       <div class="col-md-12 border-bottom p-0">
                         <input
                           type="text"
-                          placeholder="Johnathan Doe"
+                          value="<?php echo $name; ?>"
                           class="form-control p-0 border-0"
                         />
                       </div>
@@ -327,7 +324,7 @@
                       <div class="col-md-12 border-bottom p-0">
                         <input
                           type="email"
-                          placeholder="johnathan@admin.com"
+                          value="<?php echo $email; ?>"
                           class="form-control p-0 border-0"
                           name="example-email"
                           id="example-email"
@@ -335,39 +332,22 @@
                       </div>
                     </div>
                     <div class="form-group mb-4">
-                      <label class="col-md-12 p-0">Password</label>
-                      <div class="col-md-12 border-bottom p-0">
-                        <input
-                          type="password"
-                          value="password"
-                          class="form-control p-0 border-0"
-                        />
-                      </div>
-                    </div>
-                    <div class="form-group mb-4">
-                      <label class="col-md-12 p-0">Phone No</label>
+                      <label class="col-md-12 p-0">Address</label>
                       <div class="col-md-12 border-bottom p-0">
                         <input
                           type="text"
-                          placeholder="123 456 7890"
+                          value="<?php echo $address; ?>"
                           class="form-control p-0 border-0"
                         />
                       </div>
                     </div>
-                    <div class="form-group mb-4">
-                      <label class="col-md-12 p-0">Message</label>
-                      <div class="col-md-12 border-bottom p-0">
-                        <textarea
-                          rows="5"
-                          class="form-control p-0 border-0"
-                        ></textarea>
-                      </div>
+                    
                     </div>
                     
-                    <div class="form-group mb-4">
+                    <!-- <div class="form-group mb-4">
                       <div class="col-sm-12">
                         <button class="btn btn-success">Update Profile</button>
-                      </div>
+                      </div> -->
                     </div>
                   </form>
                 </div>

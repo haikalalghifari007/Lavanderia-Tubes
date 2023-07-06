@@ -24,7 +24,19 @@ include '../koneksi.php';
 <div class="table-responsive">
     <input type="text" class="search form-control" placeholder="Cari nota.....">
     <table class="table no-wrap">
-        <thead>
+    <thead>
+                      <tr>
+                        <th class="border-top-0">Invoice</th>
+                        <th class="border-top-0">Name</th>
+                        <th class="border-top-0">Status</th>
+                        <th class="border-top-0">Phone Number</th>
+                        <th class="border-top-0">Pickup Address</th>
+                        <th class="border-top-0">Price</th>
+                        <th class="border-top-0">Date Order</th>
+                        <th class="border-top-0">Perfume</th>
+                        <th class="border-top-0">Action</th>
+                      </tr>
+                    </thead>
             <?php
         $sql = "SELECT laundry_orders.*, users.name, users.phn_num
         FROM laundry_orders

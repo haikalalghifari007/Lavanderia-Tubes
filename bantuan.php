@@ -102,11 +102,11 @@
               if(! $_SESSION['login']){
                 echo "<a href='index.php' class='nav-item nav-link active'>Home</a>
                 <a href='order.php' class='nav-item nav-link disabled'>Order</a>
-                <a href='activity.php' class='nav-item nav-link disabled'>Activity</a>
+                <a href='activity.php' class='nav-item nav-link disabled'>History</a>
                 <div class='nav-item dropdown'>
                   <a href='#' class='nav-link dropdown-toggle' data-bs-toggle='dropdown'>Features</a>
                   <div class='dropdown-menu shadow-sm m-0'>
-                      <a href='menu.php' class='dropdown-item'>Menu</a>
+                      <a href='menu.php' class='dropdown-item'>Membership</a>
                       <a href='moreinfo.php' class='dropdown-item'>More info</a>";
               }
               else{
@@ -116,12 +116,12 @@
                 $user = mysqli_fetch_assoc($result);
                 echo "<a href='index.php' class='nav-item nav-link active'>Home</a>
                 <a href='order.php' class='nav-item nav-link'>Order</a>
-                <a href='activity.php' class='nav-item nav-link'>Activity</a>
+                <a href='activity.php' class='nav-item nav-link'>History</a>
                 <div class='nav-item dropdown'>
                   <a href='#' class='nav-link dropdown-toggle' data-bs-toggle='dropdown'>Features</a>
                   <div class='dropdown-menu shadow-sm m-0'>
                       <a href='account.php' class='dropdown-item'>Account</a>
-                      <a href='menu.php' class='dropdown-item'>Menu</a>
+                      <a href='menu.php' class='dropdown-item'>Membership</a>
                       <a href='moreinfo.php' class='dropdown-item'>More info</a>";
               }
         ?>
@@ -280,13 +280,13 @@
 if(! $_SESSION['login']){ //IKIII
   echo "<a class='btn btn-link' href='index.php'>Home</a>
   <a class='btn btn-link' href='login.php'>Order</a>
-  <a class='btn btn-link' href='login.php'>Activity</a>
+  <a class='btn btn-link' href='login.php'>History</a>
   <a class='btn btn-link' href='login.php'>Account</a>";
 }
 else{
   echo "<a class='btn btn-link' href='index.php'>Home</a>
   <a class='btn btn-link' href='order.php'>Order</a>
-  <a class='btn btn-link' href='activity.php'>Activity</a>
+  <a class='btn btn-link' href='activity.php'>History</a>
   <a class='btn btn-link' href='account.php'>Account</a>";
 } 
 ?>   <!--TEKAN KENEEE-->

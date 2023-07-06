@@ -4,9 +4,9 @@ session_start();
 $id = $_SESSION['id'];
 
         $sqledit = "UPDATE customers
-        SET subscription_type = 'royale',
+        SET subscription_type = 'silver',
             subscription_start_date = CURDATE(),
-            subscription_end_date = DATE_ADD(CURDATE(), INTERVAL 1 MONTH)
+            subscription_end_date = DATE_ADD(CURDATE(), INTERVAL 3 MONTH)
         WHERE customer_id = $id;
         ";
         if ($koneksi->query($sqledit) === TRUE) {

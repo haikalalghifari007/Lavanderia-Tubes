@@ -96,22 +96,22 @@
               if(! $_SESSION['login']){
                 echo "<a href='index.php' class='nav-item nav-link active'>Home</a>
                 <a href='order.php' class='nav-item nav-link disabled'>Order</a>
-                <a href='activity.php' class='nav-item nav-link disabled'>Activity</a>
+                <a href='activity.php' class='nav-item nav-link disabled'>History</a>
                 <div class='nav-item dropdown'>
                   <a href='#' class='nav-link dropdown-toggle' data-bs-toggle='dropdown'>Features</a>
                   <div class='dropdown-menu shadow-sm m-0'>
-                      <a href='menu.php' class='dropdown-item'>Menu</a>
+                      <a href='menu.php' class='dropdown-item'>Membership</a>
                       <a href='moreinfo.php' class='dropdown-item'>More info</a>";
               }
               else{
                 echo "<a href='index.php' class='nav-item nav-link '>Home</a>
                 <a href='order.php' class='nav-item nav-link'>Order</a>
-                <a href='activity.php' class='nav-item nav-link'>Activity</a>
+                <a href='activity.php' class='nav-item nav-link'>History</a>
                 <div class='nav-item dropdown'>
                   <a href='#' class='nav-link dropdown-toggle active' data-bs-toggle='dropdown'>Features</a>
                   <div class='dropdown-menu shadow-sm m-0'>
                       <a href='account.php' class='dropdown-item'>Account</a>
-                      <a href='menu.php' class='dropdown-item'>Menu</a>
+                      <a href='menu.php' class='dropdown-item'>Membership</a>
                       <a href='moreinfo.php' class='dropdown-item'>More info</a>";
               }
         ?>
@@ -140,7 +140,7 @@ else{
               <div class="col-lg-4">
                   <div class="card p-0">
                       <div class="card-image">
-                          <img src="reguler.png"
+                          <img src="./images/reguler.png"
                               alt="">
                       </div>
                       <div class="card-content d-flex flex-column align-items-center">
@@ -166,7 +166,7 @@ else{
         <div class="col-lg-4">
             <div class="card p-0">
                 <div class="card-image">
-                    <img src="royale.png" style="width: auto;" 
+                    <img src="./images/royale.png" style="width: auto;" 
                         alt="">
                 </div>
                 <div class="card-content d-flex flex-column align-items-center" >
@@ -189,7 +189,7 @@ else{
         <div class="col-lg-4">
             <div class="card p-0">
                 <div class="card-image">
-                    <img src="gold.png"
+                    <img src="./images/gold.png"
                         alt="">
                 </div>
                 <div class="card-content d-flex flex-column align-items-center">
@@ -374,13 +374,13 @@ else{
                       if(! $_SESSION['login']){ //IKIII
                         echo "<a class='btn btn-link' href='index.php'>Home</a>
                         <a class='btn btn-link' href='login.php'>Order</a>
-                        <a class='btn btn-link' href='login.php'>Activity</a>
+                        <a class='btn btn-link' href='login.php'>History</a>
                         <a class='btn btn-link' href='login.php'>Account</a>";
                       }
                       else{
                         echo "<a class='btn btn-link' href='index.php'>Home</a>
                         <a class='btn btn-link' href='order.php'>Order</a>
-                        <a class='btn btn-link' href='activity.php'>Activity</a>
+                        <a class='btn btn-link' href='activity.php'>History</a>
                         <a class='btn btn-link' href='account.php'>Account</a>";
                       } 
                     ?>   <!--TEKAN KENEEE-->

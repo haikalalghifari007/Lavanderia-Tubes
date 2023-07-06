@@ -107,12 +107,12 @@ if(! $_SESSION['login']){
         <div class="navbar-nav ms-auto py-4 py-lg-0">
           <a href="index.php" class="nav-item nav-link ">Home</a>
           <a href="order.php" class="nav-item nav-link ">Order</a>
-          <a href="activity.php" class="nav-item nav-link ">Activity</a>
+          <a href="activity.php" class="nav-item nav-link ">History</a>
           <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" >Features</a>
             <div class="dropdown-menu shadow-sm m-0">
                 <a href="account.php" class="dropdown-item">Account</a>
-                <a href="menu.php" class="dropdown-item">Menu</a>
+                <a href="menu.php" class="dropdown-item">Membership</a>
                 <a href="moreinfo.php" class="dropdown-item">More info</a>
             </div>
         </div>
@@ -224,8 +224,8 @@ if(! $_SESSION['login']){
               <li></li>
               <li></li>
             </ul>
-            <p class="text-black float-start"><span class="text-black me-3"> Total Amount</span><span
-                style="font-size: 25px;"><?php echo $sum ?></span></p>
+            <!-- <p class="text-black float-start"><span class="text-black me-3"> Total Amount</span><span
+                style="font-size: 25px;"></span></p> -->
           </div>
         </div>
         <hr>
@@ -275,7 +275,7 @@ if(! $_SESSION['login']){
                     <h5 class="mb-4">Lavanderia</h5>
                     <a class="btn btn-link" href="index.php">Home</a>
                     <a class="btn btn-link" href="order.php">Order</a>
-                    <a class="btn btn-link" href="activity.php">Activity</a>
+                    <a class="btn btn-link" href="activity.php">History</a>
                     <a class="btn btn-link" href="account.php">Account</a>
                 </div>
                 <div class="col-lg-3 col-md-6">

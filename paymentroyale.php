@@ -90,16 +90,16 @@
         <div class="navbar-nav ms-auto py-4 py-lg-0">
           <a href="index.php" class="nav-item nav-link ">Home</a>
           <a href="order.php" class="nav-item nav-link ">Order</a>
-          <a href="activity.php" class="nav-item nav-link ">Activity</a>
+          <a href="activity.php" class="nav-item nav-link ">History</a>
           <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" >Features</a>
             <div class="dropdown-menu shadow-sm m-0">
                 <a href="account.php" class="dropdown-item">Account</a>
-                <a href="menu.php" class="dropdown-item">Menu</a>
+                <a href="menu.php" class="dropdown-item">Membership</a>
                 <a href="moreinfo.php" class="dropdown-item">More info</a>
             </div>
         </div>
-              <button data-toggle="modal" data-target="#loginModal"  class="btn btn-outline-success" style="color: rgb(0, 213, 255);height:40px; margin-top:20px;width: 90px; border-color: rgb(0, 213, 255);" type="button" >Login</button >       </nav>
+        <a href='controller_logout.php' class='btn btn-outline-success' style='height:40px; margin-top:20px;color: rgb(0, 213, 255);width: 90px; border-color: rgb(0, 213, 255);' >Logout</a>       </nav>
     </nav id="pakaian">
     <!-- Navbar End -->
 
@@ -124,7 +124,7 @@
               </div>
             </div>
             <p>
-              Anda memilih paket member " Royale pass " selamat menikmati keuntungan sebagai membership selama 1 bulan.
+              Anda memilih paket member " Silver pass " selamat menikmati keuntungan sebagai membership selama 1 bulan.
             </p>
            
             <hr />
@@ -132,7 +132,7 @@
               <div class="d-flex pb-2">
                 <div>
                   <p>
-                    <b>Total Pembayaran <span class="text-success">Rp 250.000</span></b>
+                    <b>Total Pembayaran <span class="text-success">Rp 225.000</span></b>
                   </p>
                 </div>
                 <div class="ms-auto">
@@ -229,14 +229,14 @@
               </div>
               <div class="p-2 d-flex">
                 <div class="col-8">Royale Pass</div>
-                <div class="ms-auto">Rp 250.000</div>
+                <div class="ms-auto">Rp 225.000</div>
               </div>
               <div class="border-top px-2 mx-2"></div>
          
               <div class="border-top px-2 mx-2"></div>
               <div class="p-2 d-flex pt-3">
                 <div class="col-8"><b>Total</b></div>
-                <div class="ms-auto"><b class="text-success">Rp 250.000</b></div>
+                <div class="ms-auto"><b class="text-success">Rp 225.000</b></div>
               </div>
             </div>
           </div>
@@ -277,7 +277,7 @@
                     <h5 class="mb-4">Lavanderia</h5>
                     <a class="btn btn-link" href="index.php">Home</a>
                     <a class="btn btn-link" href="order.php">Order</a>
-                    <a class="btn btn-link" href="activity.php">Activity</a>
+                    <a class="btn btn-link" href="activity.php">History</a>
                     <a class="btn btn-link" href="account.php">Account</a>
                 </div>
                 <div class="col-lg-3 col-md-6">

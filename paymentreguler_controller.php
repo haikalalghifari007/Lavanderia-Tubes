@@ -3,7 +3,12 @@ include 'koneksi.php';
 session_start();
 $id = $_SESSION['id'];
 
-        $sqledit = "Update customers set subscription_type = 'reguler' where customer_id='$id'";
+        $sqledit = "UPDATE customers
+        SET subscription_type = 'bronze',
+            subscription_start_date = CURDATE(),
+            subscription_end_date = DATE_ADD(CURDATE(), INTERVAL 1 MONTH)
+        WHERE customer_id = $id;
+        ";
         if ($koneksi->query($sqledit) === TRUE) {
           echo "<script>alert('Berhasil langganan');  window.location = 'success.php'; </script>";
           } else {

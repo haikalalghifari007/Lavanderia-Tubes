@@ -95,7 +95,7 @@ session_start();
         <div class="navbar-nav ms-auto py-4 py-lg-0">
           <a href="index.php" class="nav-item nav-link ">Home</a>
           <a href="order.php" class="nav-item nav-link disabled" >Order</a>
-          <a href="activity.php" class="nav-item nav-link disabled">Activity</a>
+          <a href="activity.php" class="nav-item nav-link disabled">History</a>
           <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Features</a>
             <div class="dropdown-menu shadow-sm m-0">
@@ -209,13 +209,13 @@ session_start();
                       if(! $_SESSION['login']){ //IKIII
                         echo "<a class='btn btn-link' href='index.php'>Home</a>
                         <a class='btn btn-link' href='login.php'>Order</a>
-                        <a class='btn btn-link' href='login.php'>Activity</a>
+                        <a class='btn btn-link' href='login.php'>History</a>
                         <a class='btn btn-link' href='login.php'>Account</a>";
                       }
                       else{
                         echo "<a class='btn btn-link' href='index.php'>Home</a>
                         <a class='btn btn-link' href='order.php'>Order</a>
-                        <a class='btn btn-link' href='activity.php'>Activity</a>
+                        <a class='btn btn-link' href='activity.php'>History</a>
                         <a class='btn btn-link' href='account.php'>Account</a>";
                       } 
                     ?>   <!--TEKAN KENEEE-->
