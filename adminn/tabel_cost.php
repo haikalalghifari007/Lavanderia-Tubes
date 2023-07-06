@@ -60,7 +60,7 @@
             data: {
                 labels: months,
                 datasets: [{
-                    label: 'Total Cost',
+                    label: 'Pendapatan',
                     data: orderCounts,
                     fill: false,
                     backgroundColor: colors,
