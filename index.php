@@ -56,6 +56,7 @@ include 'koneksi.php';
         <link rel="stylesheet" href="stylepopup.css">
         <!-- Demo CSS -->
         <link rel="stylesheet" href="css/demo.css">
+        <link rel="stylesheet" href="stylefont.css">
         
      
      
@@ -154,7 +155,7 @@ include 'koneksi.php';
     ?>
     <div class="container-fluid hero-header bg-light py-5 mb-5">
       <div class="container py-5">
-        <div class="row g-5 align-items-center">
+        <div class="row g-5 align-items-center" id="font">
           <div class="col-lg-6">
           <?php
             if(! $_SESSION['login']){
@@ -172,7 +173,7 @@ include 'koneksi.php';
               >DAFTAR SEKARANG</a>";
             }
             else{
-              echo "<h1 class='display-4 mb-3 animated slideInDown'>
+              echo "<h1 class='display-4 mb-3 animated slideInDown' id='font'>
               Welcome<br />"; ?>
 
               <?php echo $user['name']; ?>

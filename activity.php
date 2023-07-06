@@ -85,12 +85,12 @@
 
   <body>
     <!-- Spinner Start -->
-    <div
+    <!-- <div
       id="spinner"
       class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
     >
       <div class="spinner-grow text-primary" role="status"></div>
-    </div>
+    </div> -->
     <!-- Spinner End -->
 
     <!-- Navbar Start -->
@@ -162,7 +162,7 @@
   <thead>
     <tr>
       <th class="col-md-5 col-xs-5">Tanggal Order</th>
-      <th class="col-md-5 col-xs-5">Order Status</th>
+      <th class="col-md-5 col-xs-5">Alamat</th>
       <th class="col-md-4 col-xs-4">Harga</th>
       <th class="col-md-3 col-xs-3">Nota</th>
     </tr>
@@ -178,7 +178,7 @@
        //menampilkan data setiap barisnya
        while ($row = $result->fetch_assoc()) {
                        $price = $row['total_cost'];
-                       $status = $row['order_status'];
+                       $status = $row['alamat'];
                        $nota = $row['nota'];
                        $tanggal = $row['order_date'];
                        echo "<tr><td>$tanggal</td>";
@@ -194,9 +194,65 @@
       
             echo "Data tidak ditemukan";
     }
-    $koneksi->close(); // menutup koneksi
 ?>
+<div class="row my-2 mx-1 justify-content-center">
+          <table class="table table-striped table-borderless">
+            <thead style="background-color:#84B0CA ;" class="text-white">
+              <tr>
+                <th class="border-top-0">Invoice</th>
+                <th class="border-top-0">Nomor Handphone</th>
+                <th class="border-top-0">Alamat</th>
+                <th class="border-top-0">Status Order</th>
+                <th class="border-top-0">Harga</th>
+                <th class="border-top-0">Tanggal Order</th>
+              </tr>
+            </thead>
+            <tbody>
+                    <?php
+                    $result = mysqli_query($koneksi, "SELECT SUM(total_cost) AS value_sum FROM laundry_orders where customer_id = '$id'"); 
+                    $row = mysqli_fetch_assoc($result); 
+                    $sum = $row['value_sum'];
+                    // $sql = "SELECT *
+                    // FROM laundry_orders
+                    // JOIN users ON laundry_orders.customer_id = users.user_id
+                    // WHERE laundry_orders.customer_id = '$id'
+                    // "; 
+                    // $hasil = $koneksi->query($sql); //memproses query
+                    // if ($hasil->num_rows > 0) {
+                    //   //menampilkan data setiap barisnya
+                    //   while ($baris = $hasil->fetch_assoc()) {
+                    //                   $id = $baris['customer_id'];
+                    //                   $phone = $baris['phn_num'];
+                    //                   $address =$baris['alamat'];
+                    //                   $status =$baris['order_status'];
+                    //                   $price = $baris['total_cost'];
+                    //                   $nota = $baris['nota'];
+                    //                   $tanggal = $baris['order_date'];
+                    //                   echo "<tr><td>$nota</td>";
+                    //                   echo "<td>$phone</td><td>$address</td>><td>$status</td><td>$price</td><td>$tanggal</td>"        
+                    //   }	
+                    //   echo "</table>";
+                    // } else {
+                    //         echo "Data tidak ditemukan";
+                    // }
+                    // $koneksi->close(); // menutup koneksi
+                ?>
+        </div>
+        
+        <div class="row">
+          <div class="col-xl-8">
+            <!-- <p class="ms-3">Add additional notes and payment information</p> -->
 
+          </div>
+          <div class="col-xl-3">
+            <ul class="list-unstyled">
+              <li></li>
+              <li></li>
+            </ul>
+            <p class="text-black float-start"><span class="text-black me-3"> Total Amount</span><span
+                style="font-size: 25px;"><?php echo $sum ?></span></p>
+          </div>
+        </div>
 
 
 <!-- Editable table -->
@@ -246,6 +302,9 @@
                       } 
                     ?>   <!--TEKAN KENEEE-->
                 </div>
+
+
+
                 <div class="col-lg-3 col-md-6">
                     <h5 class="mb-4">Bantuan & Panduan</h5>
                     <a class="btn btn-link" href="bantuan.php">Syarat & Ketentuan</a>

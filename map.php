@@ -36,7 +36,7 @@
     <meta content="" name="description" />
 
     <!-- Favicon -->
-    <link rel="stylesheet" href="mapdua.css">
+    <!-- <link rel="stylesheet" href="maptigaa.css"> -->
     <link href="Logo.png" rel="icon" />
     <!-- Bootstrap CSS -->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css'>
@@ -140,7 +140,7 @@
       
                   <div class="d-flex justify-content-between align-items-center mb-5">
                     <div>
-                      <h5 class="mb-0">INVOICE <a href="invoice.php" class="text-primary font-weight-bold">DETAILS</a></h5>
+                      <h5 class="mb-0">INVOICE <a href="invoice.php?nota=<?php echo $nota_baru; ?>" class="text-primary font-weight-bold">DETAILS</a></h5>
                     </div>
                     <div class="text-end">
                       <p class="mb-0">Expected Arrival <span><!-- Display the countdown timer in an element -->
@@ -181,39 +181,83 @@
                   </div>
                   
       
-                  <ul id="progressbar-2" class="d-flex justify-content-between mx-0 mt-0 mb-5 px-0 pt-0 pb-2">
-                    <?php 
-                    if ($status === "waiting") {
-                        echo '<li class="step0 active text-center " id="step1"></li>
-                              <li class="step0  text-center" id="step2"></li>
-                              <li class="step0  text-center" id="step3"></li>
-                              <li class="step0 text-muted text-end" id="step4"></li>';
+                  <!-- <ul id="progressbar-2" class="d-flex justify-content-between mx-0 mt-0 mb-5 px-0 pt-0 pb-2">
+                    
+                    // if ($status === "waiting") {
+                    //     echo '<li class="step0 active text-center " id="step1"></li>
+                    //           <li class="step0  text-center" id="step2"></li>
+                    //           <li class="step0  text-center" id="step3"></li>
+                    //           <li class="step0 text-muted text-end" id="step4"></li>';
+                    // } elseif ($status === "in_process") {
+                    //     echo '<li class="step0 active text-center" id="step1"></li>
+                    //     <li class="step0 active text-center" id="step2"></li>
+                    //     <li class="step0  text-center" id="step3"></li>
+                    //     <li class="step0  text-end" id="step4"></li>';
+                    // } elseif ($status === "ready_to_ship") {
+                    //     echo '<li class="step0 active text-center" id="step1"></li>
+                    //           <li class="step0 active text-center" id="step2"></li>
+                    //           <li class="step0 active text-center" id="step3"></li>
+                    //           <li class="step0  text-end" id="step4"></li>';
+                    // } elseif ($status === "done") {
+                    //     echo '<li class="step0 active text-center" id="step1"></li>
+                    //           <li class="step0 active text-center" id="step2"></li>
+                    //           <li class="step0 active text-center" id="step3"></li>
+                    //           <li class="step0 active text-end" id="step4"></li>';
+                    // } else{
+                    //   echo '<li class="step0  text-center" id="step1"></li>
+                    //           <li class="step0  text-center" id="step2"></li>
+                    //           <li class="step0  text-center" id="step3"></li>
+                    //           <li class="step0  text-end" id="step4"></li>';
+                    // }
+                    
+                </ul> -->
+                <div class="progress">
+                <?php 
+                if ($status === "waiting") {
+                        echo '
+
+                        <div class="progress-bar" role="progressbar" style="width: 15%; background-color: #6520ff;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Waiting Confirmation</div>
+                        
+                        ';
                     } elseif ($status === "in_process") {
-                        echo '<li class="step0 active text-center" id="step1"></li>
-                        <li class="step0 active text-center" id="step2"></li>
-                        <li class="step0  text-center" id="step3"></li>
-                        <li class="step0  text-end" id="step4"></li>';
+                        echo '
+                        
+                          <div class="progress-bar" role="progressbar" style="width: 25%; background-color: #6520ff;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">On Process</div>
+                        
+                      ';
                     } elseif ($status === "ready_to_ship") {
-                        echo '<li class="step0 active text-center" id="step1"></li>
-                              <li class="step0 active text-center" id="step2"></li>
-                              <li class="step0 active text-center" id="step3"></li>
-                              <li class="step0  text-end" id="step4"></li>';
+                        echo '
+                        
+                          <div class="progress-bar" role="progressbar" style="width: 55%; background-color: #6520ff;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Ready to Ship</div>
+                        
+                      ';
+                    } elseif ($status === "in_delivery") {
+                        echo '
+                        
+                        <div class="progress-bar" role="progressbar" style="width: 70%; background-color: #6520ff;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Done</div>
+                      
+                    ';
                     } elseif ($status === "done") {
-                        echo '<li class="step0 active text-center" id="step1"></li>
-                              <li class="step0 active text-center" id="step2"></li>
-                              <li class="step0 active text-center" id="step3"></li>
-                              <li class="step0 active text-end" id="step4"></li>';
-                    } else{
-                      echo '<li class="step0  text-center" id="step1"></li>
-                              <li class="step0  text-center" id="step2"></li>
-                              <li class="step0  text-center" id="step3"></li>
-                              <li class="step0  text-end" id="step4"></li>';
+                      echo '
+                      
+                      <div class="progress-bar" role="progressbar" style="width: 100%; background-color: #6520ff;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Done</div>
+                    
+                  ';
+                  } else{
+                      echo '
+                        
+                      <div class="progress-bar" role="progressbar" style="width: 0%; background-color: #6520ff;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Tidak ada data</div>
+                    
+                  ';
                     }
                     ?>
-                </ul>
 
 
-                        
+</div>
+
+
+
+                        <br>
       
                   <div class="d-flex justify-content-between">
                     <div class="d-lg-flex align-items-center">
@@ -233,10 +277,17 @@
                       </div>
                     </div>
                     <div class="d-lg-flex align-items-center">
-                      <i class="fas fa-shipping-fast fa-3x me-lg-4 mb-3 mb-lg-0"></i>
+                      <i class="fas fa-truck fa-3x me-lg-4 mb-3 mb-lg-0"></i>
                       <div>
                         <p class="fw-bold mb-1">Order</p>
                         <p class="fw-bold mb-0">Shipped</p>
+                      </div>
+                    </div>
+                    <div class="d-lg-flex align-items-center">
+                      <i class="fas fa-shipping-fast fa-3x me-lg-4 mb-3 mb-lg-0"></i>
+                      <div>
+                        <p class="fw-bold mb-1">In</p>
+                        <p class="fw-bold mb-0">Delivery</p>
                       </div>
                     </div>
                     <div class="d-lg-flex align-items-center">

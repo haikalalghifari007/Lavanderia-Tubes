@@ -4,8 +4,13 @@ session_start();
 if(! $_SESSION['login']){
   header("Location:login.php");
 }else{
+  $nota_baru = $_GET['nota'];
   $id = $_SESSION['id'];
-  $query = " select * from users where user_id= '$id' ";
+  $query = "SELECT *
+  FROM users
+  JOIN laundry_orders ON users.user_id = laundry_orders.customer_id
+  WHERE users.user_id = $id AND laundry_orders.nota = '$nota_baru'
+   ";
   $result = mysqli_query($koneksi, $query);
   $user = mysqli_fetch_assoc($result);
 }
@@ -121,7 +126,7 @@ if(! $_SESSION['login']){
     <div class="container mb-5 mt-3">
       <div class="row d-flex align-items-baseline">
         <div class="col-xl-9">
-          <p style="color: #7e8d9f;font-size: 20px;">Invoice >> <strong>ID User: <?php echo $user['user_id'] ?></strong></p>
+          <p style="color: #7e8d9f;font-size: 20px;">Invoice >> <strong>Nota: <?php echo $user['nota'] ?></strong></p>
         </div>
         <div class="col-xl-3 float-end">
          
@@ -166,6 +171,7 @@ if(! $_SESSION['login']){
             <thead style="background-color:#84B0CA ;" class="text-white">
               <tr>
                 <th class="border-top-0">Invoice</th>
+                <th class="border-top-0">Nama</th>
                 <th class="border-top-0">Nomor Handphone</th>
                 <th class="border-top-0">Alamat</th>
                 <th class="border-top-0">Status Order</th>
@@ -178,17 +184,17 @@ if(! $_SESSION['login']){
                     $result = mysqli_query($koneksi, "SELECT SUM(total_cost) AS value_sum FROM laundry_orders where customer_id = '$id'"); 
                     $row = mysqli_fetch_assoc($result); 
                     $sum = $row['value_sum'];
-                    $sql = "SELECT * 
+                    $sql = "SELECT *
                     FROM laundry_orders
-                    JOIN users
-                    ON laundry_orders.customer_id = users.user_id
-                    WHERE laundry_orders.customer_id = $id
+                    JOIN users ON laundry_orders.customer_id = users.user_id
+                    WHERE laundry_orders.nota = '$nota_baru'
                     "; 
                     $hasil = $koneksi->query($sql); //memproses query
                     if ($hasil->num_rows > 0) {
                       //menampilkan data setiap barisnya
                       while ($baris = $hasil->fetch_assoc()) {
                                       $id = $baris['customer_id'];
+                                      $name = $baris['name'];
                                       $phone = $baris['phn_num'];
                                       $address =$baris['alamat'];
                                       $status =$baris['order_status'];
@@ -196,7 +202,7 @@ if(! $_SESSION['login']){
                                       $nota = $baris['nota'];
                                       $tanggal = $baris['order_date'];
                                       echo "<tr><td>$nota</td>";
-                                      echo "<td>$phone</td><td>$address</td>><td>$status</td><td>$price</td><td>$tanggal</td>" ?>
+                                      echo "<td>$name</td><td>$phone</td><td>$address</td>><td>$status</td><td>$price</td><td>$tanggal</td>" ?>
                                     </tbody>
                                     <?php          
                       }	
@@ -223,6 +229,7 @@ if(! $_SESSION['login']){
           </div>
         </div>
         <hr>
+        
         <div class="row">
           <div class="col-xl-10">
             <p>Thank you for your purchase</p>
