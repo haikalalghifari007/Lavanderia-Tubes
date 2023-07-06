@@ -36,7 +36,7 @@
     <meta content="" name="description" />
 
     <!-- Favicon -->
-    <link rel="stylesheet" href="mapdua.css">
+    <!-- <link rel="stylesheet" href="maptigaa.css"> -->
     <link href="Logo.png" rel="icon" />
     <!-- Bootstrap CSS -->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css'>
@@ -181,36 +181,74 @@
                   </div>
                   
       
-                  <ul id="progressbar-2" class="d-flex justify-content-between mx-0 mt-0 mb-5 px-0 pt-0 pb-2">
-                    <?php 
-                    if ($status === "waiting") {
-                        echo '<li class="step0 active text-center " id="step1"></li>
-                              <li class="step0  text-center" id="step2"></li>
-                              <li class="step0  text-center" id="step3"></li>
-                              <li class="step0 text-muted text-end" id="step4"></li>';
+                  <!-- <ul id="progressbar-2" class="d-flex justify-content-between mx-0 mt-0 mb-5 px-0 pt-0 pb-2">
+                    
+                    // if ($status === "waiting") {
+                    //     echo '<li class="step0 active text-center " id="step1"></li>
+                    //           <li class="step0  text-center" id="step2"></li>
+                    //           <li class="step0  text-center" id="step3"></li>
+                    //           <li class="step0 text-muted text-end" id="step4"></li>';
+                    // } elseif ($status === "in_process") {
+                    //     echo '<li class="step0 active text-center" id="step1"></li>
+                    //     <li class="step0 active text-center" id="step2"></li>
+                    //     <li class="step0  text-center" id="step3"></li>
+                    //     <li class="step0  text-end" id="step4"></li>';
+                    // } elseif ($status === "ready_to_ship") {
+                    //     echo '<li class="step0 active text-center" id="step1"></li>
+                    //           <li class="step0 active text-center" id="step2"></li>
+                    //           <li class="step0 active text-center" id="step3"></li>
+                    //           <li class="step0  text-end" id="step4"></li>';
+                    // } elseif ($status === "done") {
+                    //     echo '<li class="step0 active text-center" id="step1"></li>
+                    //           <li class="step0 active text-center" id="step2"></li>
+                    //           <li class="step0 active text-center" id="step3"></li>
+                    //           <li class="step0 active text-end" id="step4"></li>';
+                    // } else{
+                    //   echo '<li class="step0  text-center" id="step1"></li>
+                    //           <li class="step0  text-center" id="step2"></li>
+                    //           <li class="step0  text-center" id="step3"></li>
+                    //           <li class="step0  text-end" id="step4"></li>';
+                    // }
+                    
+                </ul> -->
+                <div class="progress">
+                <?php 
+                if ($status === "waiting") {
+                        echo '
+
+                        <div class="progress-bar" role="progressbar" style="width: 15%; background-color: #6520ff;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Waiting Confirmation</div>
+                        
+                        ';
                     } elseif ($status === "in_process") {
-                        echo '<li class="step0 active text-center" id="step1"></li>
-                        <li class="step0 active text-center" id="step2"></li>
-                        <li class="step0  text-center" id="step3"></li>
-                        <li class="step0  text-end" id="step4"></li>';
+                        echo '
+                        
+                          <div class="progress-bar" role="progressbar" style="width: 35%; background-color: #6520ff;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">On Process</div>
+                        
+                      ';
                     } elseif ($status === "ready_to_ship") {
-                        echo '<li class="step0 active text-center" id="step1"></li>
-                              <li class="step0 active text-center" id="step2"></li>
-                              <li class="step0 active text-center" id="step3"></li>
-                              <li class="step0  text-end" id="step4"></li>';
+                        echo '
+                        
+                          <div class="progress-bar" role="progressbar" style="width: 65%; background-color: #6520ff;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Ready to Ship</div>
+                        
+                      ';
                     } elseif ($status === "done") {
-                        echo '<li class="step0 active text-center" id="step1"></li>
-                              <li class="step0 active text-center" id="step2"></li>
-                              <li class="step0 active text-center" id="step3"></li>
-                              <li class="step0 active text-end" id="step4"></li>';
+                        echo '
+                        
+                        <div class="progress-bar" role="progressbar" style="width: 100%; background-color: #6520ff;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Done</div>
+                      
+                    ';
                     } else{
-                      echo '<li class="step0  text-center" id="step1"></li>
-                              <li class="step0  text-center" id="step2"></li>
-                              <li class="step0  text-center" id="step3"></li>
-                              <li class="step0  text-end" id="step4"></li>';
+                      echo '
+                        
+                      <div class="progress-bar" role="progressbar" style="width: 0%; background-color: #6520ff;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Tidak ada data</div>
+                    
+                  ';
                     }
                     ?>
-                </ul>
+
+
+</div>
+
 
 
                         
