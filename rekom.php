@@ -18,6 +18,6 @@ while ($row = mysqli_fetch_assoc($hasil)) {
 ?>
 
 <select style="background-color: white;" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="pewangi">
-    <option selected>Pilihan Paket</option>
+    <option selected>Pilihan Pewangi</option>
     <?php echo $pewangi_options; ?>
 </select>

@@ -164,16 +164,7 @@
                     <input placeholder="kg" style="text-align:right; margin-left:-10px;" type="text" name="berat" class="form-control" id="firstNumber">
                   </div>
 
-                <div class="form-row">
-                  <div class="form-group col-md-2">
-                  <form name="hasil">
-
-
-                  
-      <label for="inputState">Pilihan Paket</label><br />
-
-
-      <script>
+                  <script>
       function multiplyBy() {
         
         oper = document.getElementById("operator").value;
@@ -193,53 +184,99 @@
         } 
       }
     </script>
+    <?php if($subscription_type == "gold" || $subscription_type == "silver" || $subscription_type == "bronze" ){ ?>
+                        <div class="form-row">
+                          <div class="form-group col-md-4">
+                            <form name="hasil"> 
+                            
+                            <div class="form-group col-md-3">
+                            <label for="inputState">Pewangi</label>
+                            <?php 
+                            include 'rekom.php'; 
+                            ?>
+                            
+                          
+                          </div>
+                          </div>
+                          <div class="col-md-8">
+                            <p> </p>
+                            <br>
+                            <label for="inputState">*Pewangi teratas merupakan pewangi paling banyak dipilih</label>
+                            
+                          </div>
+                 
+                      </div>
+                 <?php
+                           if($subscription_type == "gold" || $subscription_type == "silver" || $subscription_type == "bronze" ){
+                            echo "<script>
+                                function multiplyBy() {
+                                document.getElementById('result').innerHTML = num1 * 0;
+                                document.getElementById('resultsc').value = num1 * 0;
+                                }
+                            </script>";
+                          }
+                        
+                      }else{ ?>
+                      <div class="form-row">
+                        <div class="form-group col-md-2">
+                          <form name="hasil">
+                        <label for="inputState">Pilihan Paket</label>
+                        
+                      <select
+                      onclick="multiplyBy()"
+                        name="paket"
+                        style="background-color: white"
+                        class="btn btn-secondary dropdown-toggle"
+                        type="button"
+                        id="operator"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        Pilihan Paket
+                        <option selected disabled value="pilih paket">Pilih Paket</option>
+                        <option value="reguler">Reguler</option>
+                        <option value="kilat">Kilat</option>
+                        <option value="express">Express</option>
+                      </select>
+                    </form>
+                    </div>
 
-    <?php if($subscription_type == "gold" || $subscription_type == "silver" || $subscription_type == "bronze" ){
-      echo "<script>
-          function multiplyBy() {
-          document.getElementById('result').innerHTML = num1 * 0;
-          document.getElementById('resultsc').value = num1 * 0;
-          }
-      </script>";
-    }
-    ?>
-    
-      <select
-      onclick="multiplyBy()"
-        name="paket"
-        style="background-color: white"
-        class="btn btn-secondary dropdown-toggle"
-        type="button"
-        id="operator"
-        data-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
-      >
-        Pilihan Paket
-        <option selected disabled value="pilih paket">Pilih Paket</option>
-        <option value="reguler">Reguler</option>
-        <option value="kilat">Kilat</option>
-        <option value="express">Express</option>
-      </select>
-    </form>
-                  </div>
-                  <div class="form-group col-md-3">
-                    <label for="inputState">Pilihan Pewangi</label>
-                    <?php 
-                    include 'rekom.php'; 
-                    ?>
+                    <div class="form-group col-md-3">
+                      <label for="inputState">Pilihan Pewangi</label>
+                      <?php 
+                      include 'rekom.php'; 
+                      ?>
+                      
                     
+                    </div>
+  
+                    <div class="col-md-7">
+                      <p> </p>
+                      <br>
+                      <label for="inputState">*Pewangi teratas merupakan pewangi paling banyak dipilih</label>
+                      
+                    </div>
+                 
+                  </div>
+
                   
-                  </div>
+                  <?php
+                      }
+                      ?>
+                
 
-                  <div class="col-md-7">
-                    <p> </p>
-<br>
-                    <label for="inputState">*Pewangi teratas merupakan pewangi paling banyak dipilih</label>
-                    
-                  </div>
-               
-                </div>
+
+                  
+      
+
+      
+
+      
+
+                      
+                      
+                  
                 <div class="form-group">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="gridCheck" onclick="randomString();multiplyBy();" required>
