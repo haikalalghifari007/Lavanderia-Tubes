@@ -222,22 +222,28 @@
                     } elseif ($status === "in_process") {
                         echo '
                         
-                          <div class="progress-bar" role="progressbar" style="width: 35%; background-color: #6520ff;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">On Process</div>
+                          <div class="progress-bar" role="progressbar" style="width: 25%; background-color: #6520ff;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">On Process</div>
                         
                       ';
                     } elseif ($status === "ready_to_ship") {
                         echo '
                         
-                          <div class="progress-bar" role="progressbar" style="width: 65%; background-color: #6520ff;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Ready to Ship</div>
+                          <div class="progress-bar" role="progressbar" style="width: 55%; background-color: #6520ff;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Ready to Ship</div>
                         
                       ';
-                    } elseif ($status === "done") {
+                    } elseif ($status === "in_delivery") {
                         echo '
                         
-                        <div class="progress-bar" role="progressbar" style="width: 100%; background-color: #6520ff;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Done</div>
+                        <div class="progress-bar" role="progressbar" style="width: 70%; background-color: #6520ff;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Done</div>
                       
                     ';
-                    } else{
+                    } elseif ($status === "done") {
+                      echo '
+                      
+                      <div class="progress-bar" role="progressbar" style="width: 100%; background-color: #6520ff;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Done</div>
+                    
+                  ';
+                  } else{
                       echo '
                         
                       <div class="progress-bar" role="progressbar" style="width: 0%; background-color: #6520ff;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Tidak ada data</div>
@@ -251,7 +257,7 @@
 
 
 
-                        
+                        <br>
       
                   <div class="d-flex justify-content-between">
                     <div class="d-lg-flex align-items-center">
@@ -271,10 +277,17 @@
                       </div>
                     </div>
                     <div class="d-lg-flex align-items-center">
-                      <i class="fas fa-shipping-fast fa-3x me-lg-4 mb-3 mb-lg-0"></i>
+                      <i class="fas fa-truck fa-3x me-lg-4 mb-3 mb-lg-0"></i>
                       <div>
                         <p class="fw-bold mb-1">Order</p>
                         <p class="fw-bold mb-0">Shipped</p>
+                      </div>
+                    </div>
+                    <div class="d-lg-flex align-items-center">
+                      <i class="fas fa-shipping-fast fa-3x me-lg-4 mb-3 mb-lg-0"></i>
+                      <div>
+                        <p class="fw-bold mb-1">In</p>
+                        <p class="fw-bold mb-0">Delivery</p>
                       </div>
                     </div>
                     <div class="d-lg-flex align-items-center">
